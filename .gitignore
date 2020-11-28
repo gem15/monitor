@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Visual Paradigm ###
+/vp/*
+!/vp/*.vpp
+# /vp/*.v*.*
+# /vp/*.v*~*
+# /vp/*.vux
