@@ -33,8 +33,10 @@ build/
 .vscode/
 
 ### Visual Paradigm ###
-/vp/*
+/vp/*.vpp
 !/vp/*.vpp
-# /vp/*.v*.*
-# /vp/*.v*~*
-# /vp/*.vux
+/vp/.*
+/vp/*.v*.*
+/vp/*.v*~*
+/vp/*.vux
+/vp/tmp
