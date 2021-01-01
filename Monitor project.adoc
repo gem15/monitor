@@ -1,6 +1,47 @@
-*Monitor project* __fdf__
+C:\Users\Father\Documents\Oxygen\msg.xsl
+D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
+*Monitor project* _fdf_
 
 FTP
-excel, xml
+*excel*, xml
 
+[TIP]
+Java технолонии
+ всё бесплатно
+ Нет привязки к платформе. везде г
+Всегда можно найти разработчиков
+Spring boot - the best
+
+(Docker)
+Адекватное логирование
+Простота настроек application.properties
+
+Postgresql vs Oracle _избавиться от оракл_
+
+Web-service stack
+-
+***
 xslt, xsd validation
+
+Using a Version-Control System scm
+unit testing (TTD)
+
+Working with a True Development Environment
+***
+Неправильная структура ДБ - костыльные запросы и многое другое
+
+Тип документа по имени файла - а если сообщение не файл? тег тип сообщения необходим
+Отчётность на ехеле - без Юрия Григорьевича никак
+
+Разные источники email, ftp, web service
+Разные форматы данных xml, xls, csv, json....
+____
+mv ~/.ssh/id_rsa ~/.ssh/id_rsa.backup
+mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.backup
+
+/home/gemd/.ssh/id_rsa
+cp -ar ~/.ssh/* /mnt/c/temp
+
+/usr/lib/jvm/java-11-openjdk-amd64
+"java.home":"/usr/lib/jvm/java-11-openjdk-amd64"
+____

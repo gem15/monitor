@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Order>
+   <MsgType>In</MsgType>
+   <Doc>ТС-00000019</Doc>
+   <Mail/>
+   <Products>
+      <Product>
+         <LineNumber>1</LineNumber>
+         <ProductName>B2010015840A0 ignition coil</ProductName>
+         <Category>0</Category>
+         <Mark2>ТС-00000019</Mark2>
+         <Qty>30</Qty>
+         <Comment/>
+         <Article>B2010015840A0</Article>
+      </Product>
+      <Product>
+         <LineNumber>2</LineNumber>
+         <ProductName>E1088837734C0 Прокладка головок блока цилиндров</ProductName>
+         <Category>0</Category>
+         <Mark2>ТС-00000019</Mark2>
+         <Qty>30</Qty>
+         <Comment/>
+         <Article>E1088837734C0</Article>
+      </Product>
+   </Products>
+</Order>
