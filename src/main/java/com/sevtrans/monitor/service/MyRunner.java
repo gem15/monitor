@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.Collection;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
@@ -14,19 +15,38 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
-public class MyRunner implements CommandLineRunner {
+import com.sevtrans.monitor.utils.FtpClient;
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println("Hello, world from CommandLineRunner+++++++++++++");
-        FtpClient  sd;
+//@Component
+public class MyRunner {//implements CommandLineRunner {
+ //#region ftp vars
+    @Value("${ftp.host}")
+    private String server;
+    @Value("${ftp.port}")
+    private int port;
+    @Value("${ftp.user}")
+    private String user;
+    @Value("${ftp.password}")
+    private String password;
+//#endregion
 
-    }
-//https://stackoverflow.com/a/6438729/2289282
+    // @Override
+    // public void run(String... args) throws Exception {
+    //     System.out.println("Hello, world from CommandLineRunner+++++++++++++");
+    //     FtpClient fc = new FtpClient(server, port,user, password);
+    //     // FtpClient fc = new FtpClient("127.0.0.1", 21,"anonymous", "nebulus");// "123456"
+    //     fc.open();
+    //     Collection<String> listFile = fc.listFiles("");//"/" data
+    //     System.out.println(listFile.size());
+    //     fc.downloadFile("source", "destination");
+
+    // }
+
+    // https://stackoverflow.com/a/6438729/2289282
     public String transformer() throws TransformerException {
         TransformerFactory factory = TransformerFactory.newInstance();
         Source xslt = new StreamSource(new File("transform.xslt"));
@@ -38,13 +58,13 @@ public class MyRunner implements CommandLineRunner {
 
     }
 
-   /**
-    * 
-    * @param sSourcee
-    * @param sXsltt
-    * @return
-    * @throws TransformerException
-    */
+    /**
+     * 
+     * @param sSourcee
+     * @param sXsltt
+     * @return
+     * @throws TransformerException
+     */
     public static String Transform(String sSourcee, InputStream sXsltt) throws TransformerException // ,TransformerConfigurationException
     {
         Source xslt = new StreamSource(sXsltt);// new StringReader(sXsltt)

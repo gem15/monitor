@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ExpenditureOrderForGoods>
+	<Error> </Error>
+	<Number>ТС-00000011</Number>
+	<Date>14.10.2020</Date>
+	<Manager>Афонская Виктория Александровна</Manager>
+	<Mail/>
+	<Customer>Хеллманн</Customer>
+	<OrderType>Отгрузка</OrderType>
+	<TypeOfDelivery>Отгрузка клиенту</TypeOfDelivery>
+	<PlannedShipmentDate>19.10.2020</PlannedShipmentDate>
+	<VN>300228</VN>
+	<IDConsignee>УТ-УТ000009</IDConsignee>
+	<NameConsignee>М-ИНВЕСТ ООО</NameConsignee>
+	<AdressConsignee>140002, Московская обл, Люберцы г, Колхозная ул, дом 19-А, помещение I, офис 1</AdressConsignee>
+	<IDCarrier>ТС-УТ000051</IDCarrier>
+	<TypeCar>4</TypeCar>
+	<NumberCar>с564ор77</NumberCar>
+	<Driver>Салякин Владимир Сергеевич</Driver>
+	<Goods>
+		<LineNumber>1</LineNumber>
+		<Article>13PHA12</Article>
+		<Name>13PHA12 Лебёдка электрическая 12V Phantom с пультом ПДУ и синтетическим тросом в комплекте</Name>
+		<Category>0</Category>
+		<StorageLife>31.12.2021</StorageLife>
+		<Mark2>ТС-00000011</Mark2>
+		<Count>1</Count>
+		<Comment/>
+	</Goods>
+	<Goods>
+		<LineNumber>2</LineNumber>
+		<Article>35STS12</Article>
+		<Name>35STS12 Лебедка электрическая Stealth Еlectric Winch 3500 фунтов (1588 кг) с ПДУ</Name>
+		<Category>0</Category>
+		<StorageLife>31.12.2021</StorageLife>
+		<Mark2>ТС-00000011</Mark2>
+		<Count>1</Count>
+		<Comment/>
+	</Goods>
+</ExpenditureOrderForGoods>

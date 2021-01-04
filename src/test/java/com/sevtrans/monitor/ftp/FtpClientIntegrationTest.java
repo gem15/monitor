@@ -1,6 +1,10 @@
+package com.sevtrans.monitor.ftp;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.mockftpserver.fake.FakeFtpServer;
 import org.mockftpserver.fake.UserAccount;
 import org.mockftpserver.fake.filesystem.DirectoryEntry;
@@ -16,26 +20,29 @@ import com.sevtrans.monitor.utils.FtpClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FtpClientIntegrationTest {
+@TestInstance(Lifecycle.PER_CLASS) //https://stackoverflow.com/questions/52551718/what-use-is-testinstance-annotation-in-junit-5
+public class FtpClientIntegrationTest {//https://www.baeldung.com/java-ftp-client
 
     private FakeFtpServer fakeFtpServer;
 
     private FtpClient ftpClient;
 
     @BeforeAll
-    public void setup() throws IOException {
+    public void setup() throws Exception {
         fakeFtpServer = new FakeFtpServer();
         fakeFtpServer.addUserAccount(new UserAccount("user", "password", "/data"));
 
         FileSystem fileSystem = new UnixFakeFileSystem();
         fileSystem.add(new DirectoryEntry("/data"));
         // fileSystem.add(new FileEntry("/data/Order.xml", "gem 123"));
+        fileSystem.add(new FileEntry("/data/foobar.txt", "abcdef 1234567890"));
         fakeFtpServer.setFileSystem(fileSystem);
         fakeFtpServer.setServerControlPort(0);
 
         fakeFtpServer.start();
 
         ftpClient = new FtpClient("localhost", fakeFtpServer.getServerControlPort(), "user", "password");
+        // ftpClient = new FtpClient();
         ftpClient.open();
     }
 
@@ -45,12 +52,12 @@ public class FtpClientIntegrationTest {
         fakeFtpServer.stop();
     }
 
-    @Test
-    public void givenRemoteFile_whenListingRemoteFiles_thenItIsContainedInList() throws IOException {
-        Collection<String> files = ftpClient.listFiles("");
+    // @Test
+    // public void givenRemoteFile_whenListingRemoteFiles_thenItIsContainedInList() throws IOException {
+    //     Collection<String> files = ftpClient.listFiles("");
 
-        assertThat(files).contains("foobar.txt");
-    }
+    //     assertThat(files).contains("foobar.txt");
+    // }
 
     @Test
     public void givenRemoteFile_whenDownloading_thenItIsOnTheLocalFilesystem() throws IOException {

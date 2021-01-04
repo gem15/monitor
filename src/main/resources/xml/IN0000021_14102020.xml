@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ReceiptOrderForGoods>
+	<Error> </Error>
+	<Number>ТС-00000021</Number>
+	<Date>14.10.2020</Date>
+	<Manager>Афонская Виктория Александровна</Manager>
+	<Mail/>
+	<Customer>Хеллманн</Customer>
+	<NumberImportInvoice>777</NumberImportInvoice>
+	<DateImportInvoice>01.10.2020</DateImportInvoice>
+	<OrderType>Поставка</OrderType>
+	<TypeOfDelivery>Приход от поставщика</TypeOfDelivery>
+	<PlannedDeliveryDate>15.10.2020</PlannedDeliveryDate>
+	<IDSupplier>УТ-УТ000047</IDSupplier>
+	<NameSupplier>Winch Solutions Ltd</NameSupplier>
+	<AdressSupplier>109044, Москва г, 1-я Дубровская ул, дом 1, корпус 2, внутригородская территория муниципальный округ Таганский</AdressSupplier>
+	<VN>300228</VN>
+	<IDCarrier>ТС-УТ000051</IDCarrier>
+	<TypeCar>10</TypeCar>
+	<NumberCar>ПР872Ш/96</NumberCar>
+	<Driver>Иванов Константин Александрович</Driver>
+	<Goods>
+		<LineNumber>1</LineNumber>
+		<Article>13PHA12</Article>
+		<Name>13PHA12 Лебёдка электрическая 12V Phantom с пультом ПДУ и синтетическим тросом в комплекте</Name>
+		<Category>0</Category>
+		<Mark2>ТС-00000021</Mark2>
+		<Count>30</Count>
+		<Comment/>
+	</Goods>
+	<Goods>
+		<LineNumber>2</LineNumber>
+		<Article>35STS12</Article>
+		<Name>35STS12 Лебедка электрическая Stealth Еlectric Winch 3500 фунтов (1588 кг) с ПДУ</Name>
+		<Category>0</Category>
+		<Mark2>ТС-00000021</Mark2>
+		<Count>50</Count>
+		<Comment/>
+	</Goods>
+</ReceiptOrderForGoods>

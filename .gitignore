@@ -35,3 +35,4 @@ build/
 ### Visual Paradigm ###
 /vp/*
 !/vp/*.vpp
+src/main/resources/msg_out.xml
