@@ -1,7 +1,13 @@
 package com.sevtrans.monitor;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Collection;
+import java.util.stream.Collectors;
+
+import com.sevtrans.monitor.service.MyRunner;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -61,7 +67,30 @@ public class MonitorApplication implements CommandLineRunner {
 			String currentFileName = aFile.getName();
 			System.out.println(currentFileName);
 		}
-		// fc.downloadFile("source", "destination");
+
+		InputStream remoteInput = ftp.retrieveFileStream(listFile[0].getName());
+		// working
+		// BufferedReader br = new BufferedReader(new InputStreamReader(remoteInput));
+		// String line = null;
+		// while((line = br.readLine()) != null) {
+		// System.out.println(line);
+		// }
+
+		String result = new BufferedReader(new
+		InputStreamReader(remoteInput)).lines().collect(Collectors.joining("\n"));
+
+		remoteInput.close();
+
+		// call completePendingCommand and check its return value to verify success. If
+		// this is not done, subsequent commands may behave unexpectedly
+		if (!ftp.completePendingCommand()) {
+			throw new Exception("Completing Pending Commands Not Successfull");
+		}
+
+		// преобразование
+		MyRunner myRunner = new MyRunner();
+		String output = myRunner.transformer(result.toString());
+
 		System.out.println("stop");
 		ftp.logout();
 		ftp.disconnect();
