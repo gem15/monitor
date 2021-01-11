@@ -18,8 +18,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootApplication
 public class MonitorApplication implements CommandLineRunner {
+	
 	// #region ftp vars
 	@Value("${ftp.host}")
 	private String server;
@@ -37,7 +41,8 @@ public class MonitorApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Hello, world from CommandLineRunner+++++++++++++");
+		log.info("Hello, world from CommandLineRunner");
+		System.out.println();
 
 		FTPClient ftp = new FTPClient();
 		ftp.connect(server, port);
@@ -62,7 +67,7 @@ public class MonitorApplication implements CommandLineRunner {
 				return (ftpFile.isFile() && ftpFile.getName().endsWith(".xml"));
 			}
 		};
-		FTPFile[] listFile = ftp.listFiles("/", filter);// "/" data
+		FTPFile[] listFile = ftp.listFiles("/", filter);
 		for (FTPFile aFile : listFile) {
 			String currentFileName = aFile.getName();
 			System.out.println(currentFileName);
@@ -94,6 +99,7 @@ public class MonitorApplication implements CommandLineRunner {
 		System.out.println("stop");
 		ftp.logout();
 		ftp.disconnect();
+		log.info("Finish");
 
 	}
 

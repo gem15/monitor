@@ -2,19 +2,52 @@ C:\Users\Father\Documents\Oxygen\msg.xsl
 D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
 *Monitor project* _fdf_
 
+быстрое подключение новых клиентов- деньги
+REST
+
+Демонстратор
+Только для одноготипа документа полный цикл
+добавить другой документ для демонмтрации xslt
+xsd
+
 FTP
 *excel*, xml
 
 [TIP]
+Выбрал монитор т.к. независимый модуль
+следом веб клиент для клиентов
+
+Новые клиенты по идее должны ждать xsd
+xsd - web-services 1С работает с сервисами
+
+плохо для бизнеса старая система
+
+лучще перейти на на современный язык чем копаться в старом чужом дерьме
+
+Куда двигаться
+	веб-сервисы, тонкий клиент
+
+ООП против скриптового языка
 Java технолонии
  всё бесплатно
- Нет привязки к платформе. везде г
+ Нет привязки к платформе. везде работает
 Всегда можно найти разработчиков
 Spring boot - the best
+Working with a True Development Environment
+Система контроля версий
+Тестирование
+	Using a Version-Control System scm
+	unit testing (TTD)
 
-(Docker)
 Адекватное логирование
 Простота настроек application.properties
+
+(Docker) - микросервисы
+Вебинтерфейс
+
+Очень старый
+Oracle Forms for Windows is not certificate for any version of 64 bits
+Псит гупта windows 7
 
 Postgresql vs Oracle _избавиться от оракл_
 
@@ -23,10 +56,9 @@ Web-service stack
 ***
 xslt, xsd validation
 
-Using a Version-Control System scm
-unit testing (TTD)
 
-Working with a True Development Environment
+
+
 ***
 Неправильная структура ДБ - костыльные запросы и многое другое
 
@@ -45,3 +77,17 @@ cp -ar ~/.ssh/* /mnt/c/temp
 /usr/lib/jvm/java-11-openjdk-amd64
 "java.home":"/usr/lib/jvm/java-11-openjdk-amd64"
 ____
+
+@Entity
+@Data
+@Table(name = "HPSD_EXPORT", schema = "CUBE")
+@SequenceGenerator(name = "seqHpsdExport", sequenceName = "SEQ_HPSD_EXPORT", allocationSize = 1)
+//@NamedQuery(name = "HpsdExport.findOldDownloads", query = "select o from HpsdExport o where o.exportDate<:oldDate")
+public class HpsdExport {
+    @Id
+    @Column(name = "PKEY")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqHpsdExport")
+    private Long id;
+
+    @Column(name = "FILENAME")
+    private String fileName;

@@ -38,6 +38,7 @@ public class MyRunner {// implements CommandLineRunner {
     private String password;
     // #endregion
 
+    //#region CommandLineRunner
     // @Override
     // public void run(String... args) throws Exception {
     // System.out.println("Hello, world from CommandLineRunner+++++++++++++");
@@ -48,8 +49,8 @@ public class MyRunner {// implements CommandLineRunner {
     // Collection<String> listFile = fc.listFiles("");//"/" data
     // System.out.println(listFile.size());
     // fc.downloadFile("source", "destination");
-
     // }
+    //#endregion
 
     // https://stackoverflow.com/a/6438729/2289282
     public String transformer(String input) throws TransformerException {

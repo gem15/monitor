@@ -17,22 +17,22 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="Order_Detail")
+@Table(name="_Order_Detail")
 @SuppressWarnings({ "all", "unchecked" })
-public class OrderDetail implements Serializable {
-	public OrderDetail() {
+public class _OrderDetail implements Serializable {
+	public _OrderDetail() {
 	}
 	
 	@Column(name="Id", nullable=false, length=10)	
 	@Id	
-	@GeneratedValue(generator="COM_SEVTRANS_MONITOR_MODEL_ORDERDETAIL_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="COM_SEVTRANS_MONITOR_MODEL_ORDERDETAIL_ID_GENERATOR", strategy="native")	
+	@GeneratedValue(generator="COM_SEVTRANS_MONITOR_MODEL__ORDERDETAIL_ID_GENERATOR")	
+	@org.hibernate.annotations.GenericGenerator(name="COM_SEVTRANS_MONITOR_MODEL__ORDERDETAIL_ID_GENERATOR", strategy="native")	
 	private int id;
 	
-	@ManyToOne(targetEntity=com.sevtrans.monitor.model.Orders.class, fetch=FetchType.LAZY)	
+	@ManyToOne(targetEntity=com.sevtrans.monitor.model._Order.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
-	@JoinColumns(value={ @JoinColumn(name="OrderId", referencedColumnName="Id", nullable=false) }, foreignKey=@ForeignKey(name="FKOrder_Deta543113"))	
-	private com.sevtrans.monitor.model.Orders orders;
+	@JoinColumns(value={ @JoinColumn(name="OrderId", referencedColumnName="Id", nullable=false) }, foreignKey=@ForeignKey(name="FK_Order_Det553326"))	
+	private com.sevtrans.monitor.model._Order _Order;
 	
 	@Column(name="Line_No", nullable=false, length=10)	
 	private int lineNo;
@@ -43,8 +43,11 @@ public class OrderDetail implements Serializable {
 	@Column(name="Qty", nullable=false)	
 	private double qty;
 	
-	@Column(name="Um", nullable=false, length=255)	
+	@Column(name="Um", nullable=true, length=255)	
 	private String um;
+	
+	@Column(name="Mark2", nullable=true, length=255)	
+	private String mark2;
 	
 	public void setId(int value) {
 		this.id = value;
@@ -90,12 +93,20 @@ public class OrderDetail implements Serializable {
 		return um;
 	}
 	
-	public void setOrders(com.sevtrans.monitor.model.Orders value) {
-		this.orders = value;
+	public void setMark2(String value) {
+		this.mark2 = value;
 	}
 	
-	public com.sevtrans.monitor.model.Orders getOrders() {
-		return orders;
+	public String getMark2() {
+		return mark2;
+	}
+	
+	public void set_Order(com.sevtrans.monitor.model._Order value) {
+		this._Order = value;
+	}
+	
+	public com.sevtrans.monitor.model._Order get_Order() {
+		return _Order;
 	}
 	
 	public String toString() {
