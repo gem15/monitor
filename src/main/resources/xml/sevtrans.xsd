@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sevtrans.com"
+    targetNamespace="http://www.sevtrans.com" elementFormDefault="qualified">
+
+    <xs:complexType name="Shell">
+        <xs:sequence>
+            <xs:element name="msgType" type="xs:string"/>
+            <xs:element name="Customer" type="xs:int"/>
+            <xs:choice>
+                <xs:element name="product" type="product"/>
+                <xs:element name="order" type="order"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="order">
+        <xs:annotation>
+            <xs:documentation>Добавить док ин док аут</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+
+            <xs:element name="orderNo" type="xs:string"/>
+            <xs:element name="contractor"/>
+            <xs:element name="plannedDate" type="xs:dateTime"/>
+            <xs:element name="newElement"/>
+            <xs:element name="orderDetail" type="orderDetail" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="orderDetail">
+        <xs:sequence>
+            <xs:element name="lineNumber" type="xs:int"/>
+            <xs:element name="article" type="xs:string"/>
+            <xs:element name="qty" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="product">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="upc" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
