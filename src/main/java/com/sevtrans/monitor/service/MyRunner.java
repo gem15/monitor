@@ -52,21 +52,13 @@ public class MyRunner {// implements CommandLineRunner {
     // }
     //#endregion
 
-    // https://stackoverflow.com/a/6438729/2289282
-    public String transformer(String input) throws TransformerException {
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Source xslt = new StreamSource(getClass().getResourceAsStream("/msg.xsl"));
-        Transformer transformer = factory.newTransformer(xslt);
-
-        Source source = new StreamSource(new StringReader(input));
-        // Source source = new StreamSource(new File("input.xml"));
-        StringWriter output = new StringWriter();
-        Result result = new StreamResult(output);
-        transformer.transform(source, result);
-        // transformer.transform(source, new StreamResult(new File("output.xml")));
-        return output.toString();// TODO maybe return result?
-
-    }
+    /**
+     * Трансформер
+     *  https://stackoverflow.com/a/6438729/2289282
+     * @param input
+     * @return
+     * @throws TransformerException
+     */
 
     /**
      * 
@@ -75,6 +67,7 @@ public class MyRunner {// implements CommandLineRunner {
      * @return
      * @throws TransformerException
      */
+    @Deprecated
     public static String Transform(String sSourcee, InputStream sXsltt) throws TransformerException // ,TransformerConfigurationException
     {
         Source xslt = new StreamSource(sXsltt);// new StringReader(sXsltt)

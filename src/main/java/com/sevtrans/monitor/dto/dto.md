@@ -1,0 +1,1 @@
+D:\App\Java\jdk1.8.0_73\bin\xjc -nv -extension -encoding UTF-8 -d D:\App\jaxb-ri\generated -p com.sevtrans.monitor.dto  C:\Users\Father\Documents\sevtrans\monitor\src\main\resources\xml\sevtrans.xsd www.sevtrans.com > sevtrans_log.txt

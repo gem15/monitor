@@ -2,23 +2,27 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sevtrans.com"
     targetNamespace="http://www.sevtrans.com" elementFormDefault="qualified">
 
-    <xs:complexType name="Shell">
-        <xs:sequence>
-            <xs:element name="msgType" type="xs:string"/>
-            <xs:element name="Customer" type="xs:int"/>
-            <xs:choice>
-                <xs:element name="product" type="product"/>
-                <xs:element name="order" type="order"/>
-            </xs:choice>
-        </xs:sequence>
-    </xs:complexType>
+    <xs:element name="Shell">
+        <xs:annotation>
+            <xs:documentation>Абстрактный запрос</xs:documentation>
+        </xs:annotation>
 
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="msgType" type="xs:string"/>
+                <xs:element name="Customer" type="xs:int"/>
+                <xs:choice minOccurs="1" maxOccurs="1">
+                    <xs:element name="product" type="product"/>
+                    <xs:element name="order" type="order"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     <xs:complexType name="order">
         <xs:annotation>
             <xs:documentation>Добавить док ин док аут</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-
             <xs:element name="orderNo" type="xs:string"/>
             <xs:element name="contractor"/>
             <xs:element name="plannedDate" type="xs:dateTime"/>
