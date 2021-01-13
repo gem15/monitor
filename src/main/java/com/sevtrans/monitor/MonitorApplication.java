@@ -8,14 +8,21 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.sevtrans.monitor.dto.DeliveryOrder;
 import com.sevtrans.monitor.dto.ObjectFactory;
+import com.sevtrans.monitor.dto.OrderLineItem;
 import com.sevtrans.monitor.dto.Product;
 import com.sevtrans.monitor.dto.Shell;
 import com.sevtrans.monitor.service.MyRunner;
@@ -120,33 +127,60 @@ public class MonitorApplication implements CommandLineRunner {
 		ftp.disconnect();
 		log.info("Finish");
 
-		ObjectFactory factory=new ObjectFactory();
+		ObjectFactory factory = new ObjectFactory();
 		Shell shell = factory.createShell();
 		shell.setCustomer(1);
 		shell.setMsgType("УП");
-		Product product=new Product();
+		Product product = new Product();
 		product.setCode("Code");
 		product.setName("Product Name");
 		product.setUpc("UPC");
 		shell.setProduct(product);
 		marshaller(shell);
 
+		Shell shell1 = new Shell();
+		shell1.setCustomer(1);
+		shell1.setMsgType("УП");
+
+		DeliveryOrder deliveryOrder = new DeliveryOrder();
+		deliveryOrder.setDeliveryType("dlvrType");
+		deliveryOrder.setDriver("driver");
+		deliveryOrder.setLicencePlate("lic");
+		deliveryOrder.setOrderNo("order#");
+		deliveryOrder.setOrderType("fack");
+		deliveryOrder.setPlannedDate(getNow());
+		deliveryOrder.setSupplierAdress("supAdr");
+		deliveryOrder.setSupplierCode("supCode");
+		deliveryOrder.setSupplierName("supName");
+
+		OrderLineItem od =new OrderLineItem();
+		od.setArticle("A1");
+		od.setLineNumber(1);
+		deliveryOrder.getLineItem().add(od);
+		OrderLineItem od1 =new OrderLineItem();
+		od1.setArticle("A1");
+		od1.setLineNumber(1);
+		deliveryOrder.getLineItem().add(od1);
+		
+		shell1.setDeliveryOrder(deliveryOrder);
+		marshaller(shell1);
+
 	}
 
 	public String transformer(String input) throws TransformerException {
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Source xslt = new StreamSource(getClass().getResourceAsStream("/msg.xsl"));
-        Transformer transformer = factory.newTransformer(xslt);
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Source xslt = new StreamSource(getClass().getResourceAsStream("/msg.xsl"));
+		Transformer transformer = factory.newTransformer(xslt);
 
-        Source source = new StreamSource(new StringReader(input));
-        // Source source = new StreamSource(new File("input.xml"));
-        StringWriter output = new StringWriter();
-        Result result = new StreamResult(output);
-        transformer.transform(source, result);
-        // transformer.transform(source, new StreamResult(new File("output.xml")));
-        return output.toString();// TODO maybe return result?
+		Source source = new StreamSource(new StringReader(input));
+		// Source source = new StreamSource(new File("input.xml"));
+		StringWriter output = new StringWriter();
+		Result result = new StreamResult(output);
+		transformer.transform(source, result);
+		// transformer.transform(source, new StreamResult(new File("output.xml")));
+		return output.toString();// TODO maybe return result?
 
-    }
+	}
 
 	public <T> T unmarshaller(String content, Class<T> clasz) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(clasz);
@@ -157,12 +191,24 @@ public class MonitorApplication implements CommandLineRunner {
 		return jaxbUnmarshaller.unmarshal(new StreamSource(content), clasz).getValue();
 	}
 
-	public  void marshaller(Shell shell) throws JAXBException {
-		JAXBContext jaxbContext     = JAXBContext.newInstance( shell.getClass() );
-		Marshaller jaxbMarshaller   = jaxbContext.createMarshaller();
-		//jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
-        // TODO убрать в релизе
-        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		jaxbMarshaller.marshal( shell, new PrintWriter( System.out ) );
+	public void marshaller(Shell shell) throws JAXBException {
+		JAXBContext jaxbContext = JAXBContext.newInstance(shell.getClass());
+		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+		// jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
+		// TODO убрать в релизе
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		jaxbMarshaller.marshal(shell, new PrintWriter(System.out));
+	}
+
+	// TODO set in bindings
+	public XMLGregorianCalendar getNow() throws DatatypeConfigurationException {
+		GregorianCalendar gregorianCalendar = new GregorianCalendar();
+		DatatypeFactory datatypeFactory;
+		
+			datatypeFactory = DatatypeFactory.newInstance();
+        XMLGregorianCalendar now = 
+            datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
+        return now;
+		
 	}
 }
