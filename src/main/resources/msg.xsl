@@ -12,8 +12,8 @@
                         <xsl:value-of select="current()/ReceiptOrderForGoods/Customer"/>
                         <!--                        <xsl:apply-templates mode="customer" select="current()/ReceiptOrderForGoods/Customer"/>-->
                     </xsl:element>
-                    <xsl:element name="Order">
-                        <xsl:apply-templates mode="UP" select="current()"/>
+                    <xsl:element name="order">
+                        <xsl:apply-templates mode="order" select="current()"/>
                     </xsl:element>
                 </xsl:when>
             </xsl:choose>
@@ -26,16 +26,23 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template mode="UP" match="ReceiptOrderForGoods">
-        <xsl:element name="MsgType">In</xsl:element>
+    <xsl:template mode="order" match="ReceiptOrderForGoods">
+        <!--        <xsl:element name="MsgType">Поставка</xsl:element>-->
+        <!--        <xsl:element name="DDT">
+            <xsl:value-of select="current()/Date"/>
+            <xsl:text>T00:00:00.000</xsl:text>
+        </xsl:element>
+-->
         <xsl:element name="orderNo">
             <xsl:value-of select="current()/Number"/>
         </xsl:element>
         <xsl:element name="orderDate">
-            <xsl:value-of select="current()/Date"/>
+            <!--            <xsl:value-of select="current()/Date"/>-->
+            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
         </xsl:element>
         <xsl:element name="plannedDate">
-            <xsl:value-of select="current()/PlannedDeliveryDate"/>
+            <!--            <xsl:value-of select="current()/PlannedDeliveryDate"/>-->
+            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
         </xsl:element>
         <xsl:element name="orderType">
             <xsl:value-of select="current()/OrderType"/>
@@ -57,17 +64,17 @@
         </xsl:element>
 
         <xsl:element name="vehicle">
-            <xsl:element name="driver">
-                <xsl:value-of select="current()/Driver"/>
-            </xsl:element>
             <xsl:element name="licencePlate">
                 <xsl:value-of select="current()/NumberCar"/>
+            </xsl:element>
+            <xsl:element name="driver">
+                <xsl:value-of select="current()/Driver"/>
             </xsl:element>
         </xsl:element>
 
         <xsl:for-each select="current()/Goods">
             <lineItem>
-                <xsl:element name="LineNumber">
+                <xsl:element name="lineNumber">
                     <xsl:value-of select="current()/LineNumber"/>
                 </xsl:element>
                 <xsl:element name="article">
@@ -76,16 +83,16 @@
                 <xsl:element name="name">
                     <xsl:value-of select="current()/Name"/>
                 </xsl:element>
-                <xsl:element name="Category">
-                    <xsl:value-of select="current()/Category"/>
-                </xsl:element>
-                <xsl:element name="Mark2">
-                    <xsl:value-of select="current()/Mark2"/>
-                </xsl:element>
-                <xsl:element name="Qty">
+                <xsl:element name="qty">
                     <xsl:value-of select="current()/Count"/>
                 </xsl:element>
-                <xsl:element name="Comment">
+                <xsl:element name="category">
+                    <xsl:value-of select="current()/Category"/>
+                </xsl:element>
+                <xsl:element name="mark2">
+                    <xsl:value-of select="current()/Mark2"/>
+                </xsl:element>
+                <xsl:element name="comment">
                     <xsl:value-of select="current()/Comment"/>
                 </xsl:element>
             </lineItem>

@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sevtrans.com"
     targetNamespace="http://www.sevtrans.com" elementFormDefault="qualified">
 
-    <xs:element name="Shell">
+    <xs:element name="Shell" xmlns="http://www.sevtrans.com">
         <xs:annotation>
             <xs:documentation>Класс-обёртка для всех сообщений</xs:documentation>
         </xs:annotation>
@@ -10,7 +10,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="msgType" type="xs:string"/>
-                <xs:element name="customer" type="xs:int"/>
+                <xs:element name="customer" type="xs:string"/>
                 <xs:choice minOccurs="1" maxOccurs="1">
                     <xs:element name="product" type="Product">
                         <xs:annotation>
@@ -72,6 +72,9 @@
             <xs:element name="article" type="xs:string"/>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="qty" type="xs:decimal"/>
+            <xs:element name="category" type="xs:string"/>
+            <xs:element name="mark2" type="xs:string"/>
+            <xs:element name="comment" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -100,11 +103,11 @@
         <xs:sequence>
             <xs:element name="article" type="xs:string"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="upc" type="xs:string"/>
-            <xs:element name="uofm" type="xs:string"/>
-            <xs:element name="storageLife" type="xs:int"/>
-            <xs:element name="storageCondition" type="xs:string"/>
-            <xs:element name="productType" type="xs:string"/>
+            <xs:element name="upc" type="xs:string" minOccurs="0"/>
+            <xs:element name="uofm" type="xs:string" minOccurs="0"/>
+            <xs:element name="storageLife" type="xs:int" minOccurs="0"/>
+            <xs:element name="storageCondition" type="xs:string" minOccurs="0"/>
+            <xs:element name="productType" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

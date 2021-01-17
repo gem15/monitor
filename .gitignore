@@ -36,3 +36,5 @@ build/
 /vp/*
 !/vp/*.vpp
 src/main/resources/msg_out.xml
+/logs/**
+#logs/archived/spring-boot-logger-2021-01-14.0.log

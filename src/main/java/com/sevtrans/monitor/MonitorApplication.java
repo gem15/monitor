@@ -7,15 +7,18 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.stream.Collectors;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.Validator;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -44,6 +47,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.Result;
@@ -150,6 +155,7 @@ public class MonitorApplication implements CommandLineRunner {
 		vehicle.setDriver("driver");
 		vehicle.setLicencePlate("lic");
 		deliveryOrder.setOrderNo("order#");
+		deliveryOrder.setOrderDate(getNow());
 		deliveryOrder.setOrderType("fack");
 		deliveryOrder.setPlannedDate(getNow());
 		Contractor contractor=new Contractor();
@@ -160,6 +166,8 @@ public class MonitorApplication implements CommandLineRunner {
 		OrderLineItem od = new OrderLineItem();
 		od.setArticle("A1");
 		od.setLineNumber(1);
+		od.setName("name of");
+		od.setQty(new BigDecimal("2.5"));
 		deliveryOrder.getLineItem().add(od);
 		OrderLineItem od1 = new OrderLineItem();
 		od1.setArticle("A1");
@@ -213,6 +221,20 @@ public class MonitorApplication implements CommandLineRunner {
 		datatypeFactory = DatatypeFactory.newInstance();
 		XMLGregorianCalendar now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
 		return now;
-
 	}
+
+	private boolean validate(String xmlFile, String schemaFile) {
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        try {
+            Schema schema = schemaFactory.newSchema(new File(getResource(schemaFile)));
+
+            Validator validator = schema.newValidator();
+            validator.validate(new StreamSource(new File(getResource(xmlFile))));
+            return true;
+        } catch (SAXException | IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
