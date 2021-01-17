@@ -8,7 +8,6 @@
 
 package com.sevtrans.monitor.dto;
 
-import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,19 +15,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for OrderLineItem complex type.
+ * <p>Java class for Contractor complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="OrderLineItem">
+ * &lt;complexType name="Contractor">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="lineNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="article" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="qty" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
+ *         &lt;element name="adress" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,60 +36,42 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "OrderLineItem", propOrder = {
-    "lineNumber",
-    "article",
+@XmlType(name = "Contractor", propOrder = {
+    "code",
     "name",
-    "qty"
+    "adress"
 })
-public class OrderLineItem {
+public class Contractor {
 
-    protected int lineNumber;
     @XmlElement(required = true)
-    protected String article;
+    protected String code;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
-    protected BigDecimal qty;
+    protected String adress;
 
     /**
-     * Gets the value of the lineNumber property.
-     * 
-     */
-    public int getLineNumber() {
-        return lineNumber;
-    }
-
-    /**
-     * Sets the value of the lineNumber property.
-     * 
-     */
-    public void setLineNumber(int value) {
-        this.lineNumber = value;
-    }
-
-    /**
-     * Gets the value of the article property.
+     * Gets the value of the code property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getArticle() {
-        return article;
+    public String getCode() {
+        return code;
     }
 
     /**
-     * Sets the value of the article property.
+     * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setArticle(String value) {
-        this.article = value;
+    public void setCode(String value) {
+        this.code = value;
     }
 
     /**
@@ -119,27 +99,27 @@ public class OrderLineItem {
     }
 
     /**
-     * Gets the value of the qty property.
+     * Gets the value of the adress property.
      * 
      * @return
      *     possible object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public BigDecimal getQty() {
-        return qty;
+    public String getAdress() {
+        return adress;
     }
 
     /**
-     * Sets the value of the qty property.
+     * Sets the value of the adress property.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigDecimal }
+     *     {@link String }
      *     
      */
-    public void setQty(BigDecimal value) {
-        this.qty = value;
+    public void setAdress(String value) {
+        this.adress = value;
     }
 
 }

@@ -20,17 +20,20 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.sevtrans.monitor.dto.Contractor;
 import com.sevtrans.monitor.dto.DeliveryOrder;
 import com.sevtrans.monitor.dto.ObjectFactory;
 import com.sevtrans.monitor.dto.OrderLineItem;
 import com.sevtrans.monitor.dto.Product;
 import com.sevtrans.monitor.dto.Shell;
+import com.sevtrans.monitor.dto.Vehicle;
 import com.sevtrans.monitor.service.MyRunner;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPFileFilter;
 import org.apache.commons.net.ftp.FTPReply;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -69,13 +72,10 @@ public class MonitorApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		log.info("Hello, world from CommandLineRunner");
-		System.out.println();
+		log.info("FTP");
 		// #region FTP
 		FTPClient ftp = new FTPClient();
 		ftp.connect(server, port);
-		// FtpClient fc = new FtpClient("127.0.0.1", 21,"anonymous", "nebulus");//
-		// "123456"
 		ftp.enterLocalPassiveMode();
 		int reply = ftp.getReplyCode();
 		if (!FTPReply.isPositiveCompletion(reply)) {
@@ -100,12 +100,12 @@ public class MonitorApplication implements CommandLineRunner {
 			String currentFileName = aFile.getName();
 			System.out.println(currentFileName);
 		}
-		// working
-		// BufferedReader br = new BufferedReader(new InputStreamReader(remoteInput));
-		// String line = null;
-		// while((line = br.readLine()) != null) {
-		// System.out.println(line);
-		// }
+		/*
+		//
+		 * working BufferedReader br = new BufferedReader(new
+		 * InputStreamReader(remoteInput)); String line = null; while((line =
+		 * br.readLine()) != null) { System.out.println(line); }
+		 */
 		InputStream remoteInput = ftp.retrieveFileStream(listFile[0].getName());
 
 		String result = new BufferedReader(new InputStreamReader(remoteInput)).lines()
@@ -127,12 +127,13 @@ public class MonitorApplication implements CommandLineRunner {
 		ftp.disconnect();
 		log.info("Finish");
 
+		// #region test marshalling
 		ObjectFactory factory = new ObjectFactory();
 		Shell shell = factory.createShell();
 		shell.setCustomer(1);
 		shell.setMsgType("УП");
 		Product product = new Product();
-		product.setCode("Code");
+		product.setArticle("art");
 		product.setName("Product Name");
 		product.setUpc("UPC");
 		shell.setProduct(product);
@@ -144,26 +145,30 @@ public class MonitorApplication implements CommandLineRunner {
 
 		DeliveryOrder deliveryOrder = new DeliveryOrder();
 		deliveryOrder.setDeliveryType("dlvrType");
-		deliveryOrder.setDriver("driver");
-		deliveryOrder.setLicencePlate("lic");
+
+		Vehicle vehicle =new Vehicle();
+		vehicle.setDriver("driver");
+		vehicle.setLicencePlate("lic");
 		deliveryOrder.setOrderNo("order#");
 		deliveryOrder.setOrderType("fack");
 		deliveryOrder.setPlannedDate(getNow());
-		deliveryOrder.setSupplierAdress("supAdr");
-		deliveryOrder.setSupplierCode("supCode");
-		deliveryOrder.setSupplierName("supName");
+		Contractor contractor=new Contractor();
+		contractor.setAdress("supAdr");
+		contractor.setCode("supCode");
+		contractor.setName("supName");
 
-		OrderLineItem od =new OrderLineItem();
+		OrderLineItem od = new OrderLineItem();
 		od.setArticle("A1");
 		od.setLineNumber(1);
 		deliveryOrder.getLineItem().add(od);
-		OrderLineItem od1 =new OrderLineItem();
+		OrderLineItem od1 = new OrderLineItem();
 		od1.setArticle("A1");
 		od1.setLineNumber(1);
 		deliveryOrder.getLineItem().add(od1);
-		
+
 		shell1.setDeliveryOrder(deliveryOrder);
 		marshaller(shell1);
+		// #endregion
 
 	}
 
@@ -204,11 +209,10 @@ public class MonitorApplication implements CommandLineRunner {
 	public XMLGregorianCalendar getNow() throws DatatypeConfigurationException {
 		GregorianCalendar gregorianCalendar = new GregorianCalendar();
 		DatatypeFactory datatypeFactory;
-		
-			datatypeFactory = DatatypeFactory.newInstance();
-        XMLGregorianCalendar now = 
-            datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
-        return now;
-		
+
+		datatypeFactory = DatatypeFactory.newInstance();
+		XMLGregorianCalendar now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
+		return now;
+
 	}
 }

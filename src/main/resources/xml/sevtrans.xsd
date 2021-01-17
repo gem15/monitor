@@ -4,7 +4,7 @@
 
     <xs:element name="Shell">
         <xs:annotation>
-            <xs:documentation>Абстрактный запрос</xs:documentation>
+            <xs:documentation>Класс-обёртка для всех сообщений</xs:documentation>
         </xs:annotation>
 
         <xs:complexType>
@@ -17,6 +17,7 @@
                             <xs:documentation>Обновление SKU</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element name="order" type="Order"/>
                     <xs:element name="deliveryOrder" type="DeliveryOrder">
                         <xs:annotation>
                             <xs:documentation>Уведомление о поставке</xs:documentation>
@@ -28,10 +29,13 @@
     </xs:element>
 
     <xs:complexType name="Order">
+        <xs:annotation>
+            <xs:documentation>Заказ на поставку/отгрузку</xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element name="orderNo" type="xs:string"/>
             <!-- Контрагент - supplier & consignee сделать отдельный тип-->
-            <xs:element name="contractor" type="xs:string"/>
+            <xs:element name="orderDate" type="xs:dateTime"/>
             <xs:element name="plannedDate" type="xs:dateTime"/>
             <xs:element name="orderType">
                 <xs:simpleType>
@@ -41,6 +45,9 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+            <xs:element name="deliveryType" type="xs:string"/>
+            <xs:element name="contractor" type="Contractor" minOccurs="0"/>
+            <xs:element name="vehicle" type="Vehicle" minOccurs="0"/>
             <xs:element name="lineItem" type="OrderLineItem" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
@@ -52,14 +59,10 @@
         <xs:complexContent>
             <xs:extension base="Order">
                 <xs:sequence>
-                    <xs:element name="deliveryType" type="xs:string"/>
-                    <xs:element name="supplierCode" type="xs:string"/>
-                    <xs:element name="supplierName" type="xs:string"/>
-                    <xs:element name="supplierAdress" type="xs:string"/>
-                    <xs:element name="licencePlate" type="xs:string"/>
-                    <xs:element name="Driver" type="xs:string"/>
+                    
                 </xs:sequence>
             </xs:extension>
+
         </xs:complexContent>
     </xs:complexType>
 
@@ -72,11 +75,36 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="Product">
+    <xs:complexType name="Contractor">
         <xs:sequence>
             <xs:element name="code" type="xs:string"/>
             <xs:element name="name" type="xs:string"/>
+            <xs:element name="adress" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Vehicle">
+        <xs:annotation>
+            <xs:documentation>Транспортное средство</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="licencePlate" type="xs:string"/>
+            <xs:element name="driver" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Product">
+        <xs:annotation>
+            <xs:documentation>Справочник товаров</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="article" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
             <xs:element name="upc" type="xs:string"/>
+            <xs:element name="uofm" type="xs:string"/>
+            <xs:element name="storageLife" type="xs:int"/>
+            <xs:element name="storageCondition" type="xs:string"/>
+            <xs:element name="productType" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
