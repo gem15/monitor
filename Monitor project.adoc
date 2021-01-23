@@ -2,6 +2,7 @@ C:\Users\Father\Documents\Oxygen\msg.xsl
 D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
 *Monitor project* _fdf_
 
+возжность локальной отладки без удалённого подключения и и удалённая разработка на локальноай машине
 
 универсальность, стандарт
 
@@ -22,6 +23,8 @@ xsd
 
 FTP
 *excel*, xml
+
+Q: порядок обработки сообщений
 
 [TIP]
 Выбрал монитор т.к. независимый модуль

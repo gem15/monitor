@@ -6,7 +6,7 @@
 	<Manager>Афонская Виктория Александровна</Manager>
 	<Mail/>
 	<Customer>Хеллманн</Customer>
-	<OrderType>Отгрузка</OrderType>
+	<OrderType>Отгрузка_</OrderType>
 	<TypeOfDelivery>Отгрузка клиенту</TypeOfDelivery>
 	<PlannedShipmentDate>19.10.2020</PlannedShipmentDate>
 	<VN>300228</VN>
