@@ -67,24 +67,4 @@ public class MyRunner {// implements CommandLineRunner {
      * @return
      * @throws TransformerException
      */
-    @Deprecated
-    public static String Transform(String sSourcee, InputStream sXsltt) throws TransformerException // ,TransformerConfigurationException
-    {
-        Source xslt = new StreamSource(sXsltt);// new StringReader(sXsltt)
-        Source source = new StreamSource(new StringReader(sSourcee));
-        StringWriter sw = new StringWriter();
-        Result result = new StreamResult(sw);
-
-        TransformerFactory transFactory = TransformerFactory.newInstance();
-        Transformer transf = transFactory.newTransformer(xslt);
-        // https://stackoverflow.com/questions/139076/how-to-pretty-print-xml-from-java
-        transFactory.setAttribute("indent-number", 2);
-        transf.setOutputProperty(OutputKeys.INDENT, "yes");
-        transf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-
-        transf.transform(source, result);
-
-        return sw.toString();
-    }
-
-}
+ }

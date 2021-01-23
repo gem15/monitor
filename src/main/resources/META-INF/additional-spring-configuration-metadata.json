@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "xsl",
-  "type": "java.lang.String",
-  "description": "A description for 'xsl'"
-}]}
+{"properties": [
+  {
+    "name": "xsl",
+    "type": "java.lang.String",
+    "description": "Path to xslt transorm file"
+  },
+  {
+    "name": "ftp.user",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.user'"
+  }
+]}
