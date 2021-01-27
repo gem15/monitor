@@ -31,6 +31,7 @@ import com.sevtrans.monitor.dto.Product;
 import com.sevtrans.monitor.dto.Shell;
 import com.sevtrans.monitor.dto.Vehicle;
 import com.sevtrans.monitor.service.MyRunner;
+import com.sevtrans.monitor.utils.MyFtpCLient;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -53,10 +54,15 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
-
+import org.xml.sax.SAXException;
+import java.net.SocketException;
+import javax.xml.transform.TransformerException;
+import org.springframework.stereotype.Component;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 // import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Component
 public class FtpMsg {
     // #region ftp vars
     @Value("${ftp.host}")
@@ -69,12 +75,13 @@ public class FtpMsg {
     private String password;
     // #endregion
 
-    public void fileProcessing() throws Exception{
+    public void fileProcessing() throws SocketException,IOException,TransformerException {
 
         log.info("FTP");
         // #region FTP
         FTPClient ftp = new FTPClient();
         ftp.connect(server, port);
+        // ftp.connect("localhost", 21);
         ftp.enterLocalPassiveMode();
         int reply = ftp.getReplyCode();
         if (!FTPReply.isPositiveCompletion(reply)) {
@@ -82,9 +89,10 @@ public class FtpMsg {
             throw new IOException("Exception in connecting to FTP Server");
         }
 
-        if (!ftp.login(user, password)) {
+        if (!ftp.login("anonymous", "")) {
+        // if (!ftp.login(user, password)) {
             ftp.logout();
-            throw new Exception("Login Error");
+            //throw new Exception("Login Error");
         }
 
         FTPFileFilter filter = new FTPFileFilter() {
@@ -99,34 +107,32 @@ public class FtpMsg {
             String currentFileName = aFile.getName();
             System.out.println(currentFileName);
         }
-        /*
-         * // working BufferedReader br = new BufferedReader(new
-         * InputStreamReader(remoteInput)); String line = null; while((line =
-         * br.readLine()) != null) { System.out.println(line); }
-         */
-        InputStream remoteInput = ftp.retrieveFileStream(listFile[0].getName());
+ 
+         //https://www.baeldung.com/java-try-with-resources
+        try (InputStream remoteInput = ftp.retrieveFileStream(listFile[0].getName())) {
+            String result = new BufferedReader(new InputStreamReader(remoteInput)).lines()
+                    .collect(Collectors.joining("\n"));
 
-        String result = new BufferedReader(new InputStreamReader(remoteInput)).lines()
-                .collect(Collectors.joining("\n"));
+        // xslt преобразование
+            String output = transformer(result);
+            log.info(output);
+            // remoteInput.close();
 
-        remoteInput.close();
+        }
 
         // call completePendingCommand and check its return value to verify success. If
         if (!ftp.completePendingCommand()) {
-            throw new Exception("Completing Pending Commands Not Successfull");
+            //TODO make custom exception
+           //!!! throw new Exception("Completing Pending Commands Not Successfull");
         }
-        // #endregion
-
-        // xslt преобразование
-        String output = transformer(result);
-
-        System.out.println("stop");
+ 
         ftp.logout();
         ftp.disconnect();
         log.info("Finish");
+        // #endregion
 
         // #region test marshalling
-        ObjectFactory factory = new ObjectFactory();
+/*         ObjectFactory factory = new ObjectFactory();
         Shell shell = factory.createShell();
         shell.setCustomer(1);
         shell.setMsgType("УП");
@@ -169,6 +175,7 @@ public class FtpMsg {
 
         shell1.setDeliveryOrder(deliveryOrder);
         marshaller(shell1);
+ */
         // #endregion
     }
 
@@ -187,6 +194,34 @@ public class FtpMsg {
 
     }
 
+    public <T> T unmarshaller(String content, Class<T> clasz, String xsdFile) throws JAXBException, SAXException {
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(clasz);
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+        // Setup schema validator
+        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        // Schema employeeSchema = sf.newSchema(new File(xsdFile));
+        Schema employeeSchema = sf.newSchema(new StreamSource(xsdFile));
+        jaxbUnmarshaller.setSchema(employeeSchema);
+
+        // Unmarshal xml file
+        // Employee employee = (Employee) jaxbUnmarshaller.unmarshal(new File(xmlFile));
+
+        // System.out.println(employee);
+        // catch (JAXBException | SAXException e)
+        // e.printStackTrace();
+        return jaxbUnmarshaller.unmarshal(new StreamSource(content), clasz).getValue();
+    }
+
+    /**
+     * Без xsd валидации
+     * 
+     * @param content - xml файл
+     * @param clasz
+     * @return T
+     * @throws JAXBException
+     */
     public <T> T unmarshaller(String content, Class<T> clasz) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(clasz);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -226,4 +261,19 @@ public class FtpMsg {
      * (SAXException | IOException e) { e.printStackTrace(); return false; } }
      */
 
+     public void proc() throws Exception{
+         MyFtpCLient ftp= new MyFtpCLient("localhost", 21, "anonymous", "");
+         ftp.open();
+         FTPFile[] files=ftp.listFiles("/");
+
+         for (FTPFile file : files) {
+            // String output = transformer(ftp.get(file.getName()));
+            
+            String source=ftp.get(file.getName());
+            log.info(source);
+         }
+
+         ftp.close();
+         
+     }
 }

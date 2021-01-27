@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Collection;
-import com.sevtrans.monitor.utils.FtpClient;
+import com.sevtrans.monitor.utils.MyFtpCLient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +25,7 @@ public class FtpClientIntegrationTest {//https://www.baeldung.com/java-ftp-clien
 
     private FakeFtpServer fakeFtpServer;
 
-    private FtpClient ftpClient;
+    private MyFtpCLient ftpClient;
 
     @BeforeAll
     public void setup() throws Exception {
@@ -41,7 +41,7 @@ public class FtpClientIntegrationTest {//https://www.baeldung.com/java-ftp-clien
 
         fakeFtpServer.start();
 
-        ftpClient = new FtpClient("localhost", fakeFtpServer.getServerControlPort(), "user", "password");
+        ftpClient = new MyFtpCLient("localhost", fakeFtpServer.getServerControlPort(), "user", "password");
         // ftpClient = new FtpClient();
         ftpClient.open();
     }

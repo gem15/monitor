@@ -1,5 +1,7 @@
 package com.sevtrans.monitor;
 
+import com.sevtrans.monitor.service.FtpMsg;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@EnableScheduling
+// @EnableScheduling
 @SpringBootApplication
 public class MonitorApplication implements CommandLineRunner {
 	public static void main(String[] args) {
@@ -18,6 +20,9 @@ public class MonitorApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		log.info("command runner");
+		FtpMsg ftpMsg=new FtpMsg();
+		// ftpMsg.fileProcessing();
+		ftpMsg.proc();
 	}
 
 	/*

@@ -1,30 +1,7 @@
 package com.sevtrans.monitor.service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
-import com.sevtrans.monitor.utils.FtpClient;
-
+@Deprecated
 //@Component
 public class MyRunner {// implements CommandLineRunner {
     // #region ftp vars
