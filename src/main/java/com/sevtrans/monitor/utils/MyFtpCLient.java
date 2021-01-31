@@ -75,6 +75,11 @@ public class MyFtpCLient {
 
     public String get(String fileName) throws IOException {
         InputStream remoteInput = ftp.retrieveFileStream(fileName);
+//        completePendingCommand
+        if(!ftp.completePendingCommand()){
+            System.out.println("Completing Pending Commands Not Successfull");
+        }
+
         String result = new BufferedReader(new InputStreamReader(remoteInput)).lines()
                 .collect(Collectors.joining("\n"));
         remoteInput.close();

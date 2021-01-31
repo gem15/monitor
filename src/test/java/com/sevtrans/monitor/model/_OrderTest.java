@@ -8,14 +8,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.thoughtworks.xstream.XStream;
-
 @TestInstance(Lifecycle.PER_CLASS)
 public class _OrderTest {
 
     @SuppressWarnings("unchecked")
     @Test
     public void name() {
+/*
         XStream xstream = new XStream();
         xstream.alias("product", _OrderDetail.class);
         xstream.alias("Order", _Order.class);
@@ -50,6 +49,7 @@ public class _OrderTest {
 		order.setOrderDetail(dtl);
         String out=xstream.toXML(order);
         System.out.println(out);
+*/
 
     }
     

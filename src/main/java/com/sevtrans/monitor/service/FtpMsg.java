@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -33,6 +34,7 @@ import com.sevtrans.monitor.dto.Vehicle;
 import com.sevtrans.monitor.service.MyRunner;
 import com.sevtrans.monitor.utils.MyFtpCLient;
 
+import com.sevtrans.monitor.utils.XmlUtiles;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPFileFilter;
@@ -54,9 +56,12 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
+
 import org.xml.sax.SAXException;
+
 import java.net.SocketException;
 import javax.xml.transform.TransformerException;
+
 import org.springframework.stereotype.Component;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 // import lombok.extern.slf4j.Slf4j;
@@ -64,7 +69,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Slf4j
 @Component
 public class FtpMsg {
-    // #region ftp vars
     @Value("${ftp.host}")
     private String server;
     @Value("${ftp.port}")
@@ -73,12 +77,14 @@ public class FtpMsg {
     private String user;
     @Value("${ftp.password}")
     private String password;
-    // #endregion
+    @Value("${schemaFile}")
+    private String xmlSchema;
 
-    public void fileProcessing() throws SocketException,IOException,TransformerException {
+    private XmlUtiles xmlUtiles = new XmlUtiles();
+
+    public void fileProcessing() throws SocketException, IOException, TransformerException {
 
         log.info("FTP");
-        // #region FTP
         FTPClient ftp = new FTPClient();
         ftp.connect(server, port);
         // ftp.connect("localhost", 21);
@@ -90,31 +96,31 @@ public class FtpMsg {
         }
 
         if (!ftp.login("anonymous", "")) {
-        // if (!ftp.login(user, password)) {
+            // if (!ftp.login(user, password)) {
             ftp.logout();
             //throw new Exception("Login Error");
         }
 
         FTPFileFilter filter = new FTPFileFilter() {
-
             @Override
             public boolean accept(FTPFile ftpFile) {
                 return (ftpFile.isFile() && ftpFile.getName().endsWith(".xml"));
             }
         };
+
         FTPFile[] listFile = ftp.listFiles("/", filter);
         for (FTPFile aFile : listFile) {
             String currentFileName = aFile.getName();
             System.out.println(currentFileName);
         }
- 
-         //https://www.baeldung.com/java-try-with-resources
+
+        //https://www.baeldung.com/java-try-with-resources
         try (InputStream remoteInput = ftp.retrieveFileStream(listFile[0].getName())) {
             String result = new BufferedReader(new InputStreamReader(remoteInput)).lines()
                     .collect(Collectors.joining("\n"));
 
-        // xslt преобразование
-            String output = transformer(result);
+            // xslt преобразование
+            String output = xmlUtiles.transformer(result);
             log.info(output);
             // remoteInput.close();
 
@@ -123,9 +129,9 @@ public class FtpMsg {
         // call completePendingCommand and check its return value to verify success. If
         if (!ftp.completePendingCommand()) {
             //TODO make custom exception
-           //!!! throw new Exception("Completing Pending Commands Not Successfull");
+            //!!! throw new Exception("Completing Pending Commands Not Successfull");
         }
- 
+
         ftp.logout();
         ftp.disconnect();
         log.info("Finish");
@@ -179,101 +185,29 @@ public class FtpMsg {
         // #endregion
     }
 
-    public String transformer(String input) throws TransformerException {
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Source xslt = new StreamSource(getClass().getResourceAsStream("/msg.xsl"));
-        Transformer transformer = factory.newTransformer(xslt);
 
-        Source source = new StreamSource(new StringReader(input));
-        // Source source = new StreamSource(new File("input.xml"));
-        StringWriter output = new StringWriter();
-        Result result = new StreamResult(output);
-        transformer.transform(source, result);
-        // transformer.transform(source, new StreamResult(new File("output.xml")));
-        return output.toString();// TODO maybe return result?
+    public void proc() throws Exception {
+        MyFtpCLient ftp = new MyFtpCLient("localhost", 21, "anonymous", "");
+        ftp.open();
+        FTPFile[] files = ftp.listFiles("/");
+
+        for (FTPFile file : files) {
+            // #1 get file
+            String source = ftp.get(file.getName());
+            // # 2 transform it
+            String output = xmlUtiles.transformer(source);
+            // #3 validate
+            if (!xmlUtiles.validate(output,xmlSchema)){
+            log.error("Ошибка в файле "+file.getName());
+                continue;
+            }
+
+            // #4 unmarshall with validation
+            Shell shell = xmlUtiles.unmarshaller(output, Shell.class, output);
+            log.info(shell.getMsgType());
+        }
+//TODO ftp delete source file
+        ftp.close();
 
     }
-
-    public <T> T unmarshaller(String content, Class<T> clasz, String xsdFile) throws JAXBException, SAXException {
-
-        JAXBContext jaxbContext = JAXBContext.newInstance(clasz);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-        // Setup schema validator
-        SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        // Schema employeeSchema = sf.newSchema(new File(xsdFile));
-        Schema employeeSchema = sf.newSchema(new StreamSource(xsdFile));
-        jaxbUnmarshaller.setSchema(employeeSchema);
-
-        // Unmarshal xml file
-        // Employee employee = (Employee) jaxbUnmarshaller.unmarshal(new File(xmlFile));
-
-        // System.out.println(employee);
-        // catch (JAXBException | SAXException e)
-        // e.printStackTrace();
-        return jaxbUnmarshaller.unmarshal(new StreamSource(content), clasz).getValue();
-    }
-
-    /**
-     * Без xsd валидации
-     * 
-     * @param content - xml файл
-     * @param clasz
-     * @return T
-     * @throws JAXBException
-     */
-    public <T> T unmarshaller(String content, Class<T> clasz) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clasz);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        // TODO change string to inputstring
-        // Overloaded methods to unmarshal from different xml sources
-        // https://howtodoinjava.com/jaxb/jaxb-unmarshaller-example/
-        return jaxbUnmarshaller.unmarshal(new StreamSource(content), clasz).getValue();
-    }
-
-    public void marshaller(Shell shell) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(shell.getClass());
-        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-        // jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
-        // TODO убрать в релизе
-        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        jaxbMarshaller.marshal(shell, new PrintWriter(System.out));
-    }
-
-    // TODO set in bindings
-    public XMLGregorianCalendar getNow() throws DatatypeConfigurationException {
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        DatatypeFactory datatypeFactory;
-
-        datatypeFactory = DatatypeFactory.newInstance();
-        XMLGregorianCalendar now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
-        return now;
-    }
-
-    /*
-     * private boolean validate(String xmlFile, String schemaFile) { SchemaFactory
-     * schemaFactory =
-     * SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI); try { Schema
-     * schema = schemaFactory.newSchema(new File(getResource(schemaFile)));
-     * 
-     * Validator validator = schema.newValidator(); validator.validate(new
-     * StreamSource(new File(getResource(xmlFile)))); return true; } catch
-     * (SAXException | IOException e) { e.printStackTrace(); return false; } }
-     */
-
-     public void proc() throws Exception{
-         MyFtpCLient ftp= new MyFtpCLient("localhost", 21, "anonymous", "");
-         ftp.open();
-         FTPFile[] files=ftp.listFiles("/");
-
-         for (FTPFile file : files) {
-            // String output = transformer(ftp.get(file.getName()));
-            
-            String source=ftp.get(file.getName());
-            log.info(source);
-         }
-
-         ftp.close();
-         
-     }
 }

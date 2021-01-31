@@ -2,6 +2,7 @@ package com.sevtrans.monitor;
 
 import com.sevtrans.monitor.service.FtpMsg;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,10 +18,12 @@ public class MonitorApplication implements CommandLineRunner {
 		SpringApplication.run(MonitorApplication.class, args);
 	}
 
+	@Autowired
+	FtpMsg ftpMsg;
 	@Override
 	public void run(String... args) throws Exception {
 		log.info("command runner");
-		FtpMsg ftpMsg=new FtpMsg();
+//		FtpMsg ftpMsg=new FtpMsg();
 		// ftpMsg.fileProcessing();
 		ftpMsg.proc();
 	}

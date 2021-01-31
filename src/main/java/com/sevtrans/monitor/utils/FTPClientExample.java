@@ -12,7 +12,7 @@ import java.io.OutputStream;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
-
+@Deprecated
 public class FTPClientExample {
 	
 
