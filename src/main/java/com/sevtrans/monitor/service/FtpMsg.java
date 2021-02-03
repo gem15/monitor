@@ -192,18 +192,20 @@ public class FtpMsg {
         FTPFile[] files = ftp.listFiles("/");
 
         for (FTPFile file : files) {
-            // #1 get file
+            // #1 get file from ftp
             String source = ftp.get(file.getName());
-            // # 2 transform it
+            // # 2 transform it //TODO xmlns=""
             String output = xmlUtiles.transformer(source);
+            output=output.replaceAll( " xmlns=\"\"", "");
+            log.info(output);
             // #3 validate
-            if (!xmlUtiles.validate(output,xmlSchema)){
+            if (!xmlUtiles.validate(output.replaceAll( "xmlns=\"\"", ""),xmlSchema)){
             log.error("Ошибка в файле "+file.getName());
                 continue;
             }
 
             // #4 unmarshall with validation
-            Shell shell = xmlUtiles.unmarshaller(output, Shell.class, output);
+            Shell shell = xmlUtiles.unmarshaller(output, Shell.class);//, xmlSchema
             log.info(shell.getMsgType());
         }
 //TODO ftp delete source file

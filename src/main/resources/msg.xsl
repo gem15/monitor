@@ -4,7 +4,8 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <xsl:template match="/">
-        <xsl:element name="Shell">
+                <Shell xmlns="http://www.sevtrans.com">
+<!--        <xsl:element name="Shell">-->
             <xsl:choose>
                 <xsl:when test="ReceiptOrderForGoods != ''">
                     <xsl:element name="msgType">delivery</xsl:element>
@@ -27,7 +28,8 @@
                     </xsl:element>
                 </xsl:when>
             </xsl:choose>
-        </xsl:element>
+            </Shell>
+<!--        </xsl:element>-->
     </xsl:template>
 
     <xsl:template mode="customer" match="Customer">

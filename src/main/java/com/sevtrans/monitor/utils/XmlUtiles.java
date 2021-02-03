@@ -1,6 +1,7 @@
 package com.sevtrans.monitor.utils;
 
 import com.sevtrans.monitor.dto.Shell;
+import lombok.extern.slf4j.Slf4j;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -11,6 +12,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -21,19 +23,17 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.GregorianCalendar;
 
+@Slf4j
 public class XmlUtiles {
 
     public <T> T unmarshaller(String content, Class<T> clasz, String xsdFile) throws JAXBException, SAXException {
-
         JAXBContext jaxbContext = JAXBContext.newInstance(clasz);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
         // Setup schema validator
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        // Schema employeeSchema = sf.newSchema(new File(xsdFile));
-        Schema schema = sf.newSchema(new StreamSource(xsdFile));
+        Schema schema = sf.newSchema(new StreamSource(getClass().getResourceAsStream(xsdFile)));
         jaxbUnmarshaller.setSchema(schema);
-        return jaxbUnmarshaller.unmarshal(new StreamSource(content), clasz).getValue();
+        return jaxbUnmarshaller.unmarshal(new StreamSource(new StringReader(content)), clasz).getValue();
     }
 
     /**
@@ -45,12 +45,10 @@ public class XmlUtiles {
      * @throws JAXBException
      */
     public <T> T unmarshaller(String content, Class<T> clasz) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clasz);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Shell.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        // TODO change string to inputstring
-        // Overloaded methods to unmarshal from different xml sources
-        // https://howtodoinjava.com/jaxb/jaxb-unmarshaller-example/
-        return jaxbUnmarshaller.unmarshal(new StreamSource(content), clasz).getValue();
+         Object o=jaxbUnmarshaller.unmarshal(new StreamSource(new StringReader(content)));
+        return jaxbUnmarshaller.unmarshal(new StreamSource(new StringReader(content)), clasz).getValue();
     }
 
     /**
@@ -109,7 +107,8 @@ public class XmlUtiles {
             return true;
         } catch
         (SAXException | IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
+//            e.printStackTrace();
             return false;
         }
     }
