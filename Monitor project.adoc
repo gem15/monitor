@@ -2,6 +2,15 @@ C:\Users\Father\Documents\Oxygen\msg.xsl
 D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
 *Monitor project* _fdf_
 
+[red]#red text# [yellow-background]#on yellow#
+[big]#large# [red yellow-background big]*all bold*
+
+* bullet
+- bullet
+- bullet
+
+TIP: занчительно возросло понимание
+
 возжность локальной отладки без удалённого подключения и и удалённая разработка на локальноай машине
 
 универсальность, стандарт
