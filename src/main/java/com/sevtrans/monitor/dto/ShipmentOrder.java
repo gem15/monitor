@@ -16,12 +16,12 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Добавить док ин док аут
  * 
- * <p>Java class for DeliveryOrder complex type.
+ * <p>Java class for ShipmentOrder complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="DeliveryOrder">
+ * &lt;complexType name="ShipmentOrder">
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.sevtrans.com}Order">
  *       &lt;sequence>
@@ -34,8 +34,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DeliveryOrder")
-public class DeliveryOrder
+@XmlType(name = "ShipmentOrder")
+public class ShipmentOrder
     extends Order
 {
 

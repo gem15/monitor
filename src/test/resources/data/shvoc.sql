@@ -1,10 +1,7 @@
 
 insert into sv_hvoc (VAL_ID, HVOC_VAL_ID, VOC_ID, VAL_FULL, VAL_SHORT, VAL_STATE, VAL_CHANGES, TOOLS, DATA_BEGIN, DATA_END, MASTER_VAL_ID, POLICE_CODE)
-values ('KB_PER93734', 'KB_PER24665', 'KB_PER', 'Леруа Мерлен (Междугородняя)', 'ЛМ', 'Deleted', 'Allowed', null, to_date('23-06-2011', 'dd-mm-yyyy'), to_date('03-05-2018 20:39:25', 'dd-mm-yyyy hh24:mi:ss'), null, null);
-insert into sv_hvoc (VAL_ID, HVOC_VAL_ID, VOC_ID, VAL_FULL, VAL_SHORT, VAL_STATE, VAL_CHANGES, TOOLS, DATA_BEGIN, DATA_END, MASTER_VAL_ID, POLICE_CODE)
-values ('KB_PER24666', 'KB_PER24665', 'KB_PER', 'Вывоз груза', 'ВГ', 'Deleted', 'Allowed', null, to_date('12-02-2004', 'dd-mm-yyyy'), to_date('03-05-2018 20:39:49', 'dd-mm-yyyy hh24:mi:ss'), null, '037700');
-
-insert into sv_hvoc (VAL_ID, HVOC_VAL_ID, VOC_ID, VAL_FULL, VAL_SHORT, VAL_STATE, VAL_CHANGES, TOOLS, DATA_BEGIN, DATA_END, MASTER_VAL_ID, POLICE_CODE)
+values ('KB_PER93734', 'KB_PER24665', 'KB_PER', 'Леруа Мерлен (Междугородняя)', 'ЛМ', 'Deleted', 'Allowed', null, to_date('23-06-2011', 'dd-mm-yyyy'), to_date('03-05-2018 20:39:25', 'dd-mm-yyyy hh24:mi:ss'), null, null),
+values ('KB_PER24666', 'KB_PER24665', 'KB_PER', 'Вывоз груза', 'ВГ', 'Deleted', 'Allowed', null, to_date('12-02-2004', 'dd-mm-yyyy'), to_date('03-05-2018 20:39:49', 'dd-mm-yyyy hh24:mi:ss'), null, '037700'),
 values ('KB_PER24667', 'KB_PER24665', 'KB_PER', 'Междугородняя', 'МГ', 'Active', 'Allowed', null, to_date('11-04-2002', 'dd-mm-yyyy'), null, null, '037700');
 
 insert into sv_hvoc (VAL_ID, HVOC_VAL_ID, VOC_ID, VAL_FULL, VAL_SHORT, VAL_STATE, VAL_CHANGES, TOOLS, DATA_BEGIN, DATA_END, MASTER_VAL_ID, POLICE_CODE)

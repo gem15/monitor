@@ -13,6 +13,8 @@
  */
 package com.sevtrans.monitor.model;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import java.io.Serializable;
 import javax.persistence.*;
 /**
@@ -26,10 +28,22 @@ public class Shvoc implements Serializable {
 	public Shvoc() {
 	}
 	
-	@Column(name="val_id", nullable=false, length=38)	
-	@Id	
+	@Column(name="val_id", nullable=false,length = 38)
+/*
+	@Id
 	@GeneratedValue(generator="COM_SEVTRANS_MONITOR_MODEL_SHVOC_VAL_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="COM_SEVTRANS_MONITOR_MODEL_SHVOC_VAL_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="seqq") })	
+	@org.hibernate.annotations.GenericGenerator(name="COM_SEVTRANS_MONITOR_MODEL_SHVOC_VAL_ID_GENERATOR",
+			strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="seqq") })
+*/
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqq")
+	@GenericGenerator(
+			name = "seqq",
+			strategy = "com.sevtrans.monitor.model.StringPrefixedSequenceIdGenerator",
+			parameters = {
+					@Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
+					@Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "0102"),
+					@Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%d") })//"%010d"
 	private String Val_id;
 	
 	@Column(name="hvoc_val_id", nullable=true, length=38)	
@@ -53,7 +67,7 @@ public class Shvoc implements Serializable {
 	@Column(name="tools", nullable=true, length=4000)	
 	private String Tools;
 	
-	@Column(name="data_begin", nullable=false)	
+	@Column(name="data_begin", nullable=true)
 	private java.sql.Timestamp Data_begin;
 	
 	@Column(name="data_end", nullable=true)	

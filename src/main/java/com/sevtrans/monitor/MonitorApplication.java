@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +26,15 @@ public class MonitorApplication implements CommandLineRunner {
 		log.info("command runner");
 //		FtpMsg ftpMsg=new FtpMsg();
 		// ftpMsg.fileProcessing();
-		ftpMsg.proc();
+
+//		ftpMsg.proc();//working
 	}
 
+
+	@Bean
+	public FtpMsg ftpMsg(){
+		return new FtpMsg();
+	}
 	/*
 	 * public String transformer(String input) throws TransformerException {
 	 * TransformerFactory factory = TransformerFactory.newInstance(); Source xslt =

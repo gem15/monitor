@@ -4,11 +4,14 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <xsl:template match="/">
-                <Shell xmlns="http://www.sevtrans.com">
-<!--        <xsl:element name="Shell">-->
+<!--                <Shell xmlns="http://www.sevtrans.com">-->
+        <xsl:element name="Shell">
             <xsl:choose>
                 <xsl:when test="ReceiptOrderForGoods != ''">
                     <xsl:element name="msgType">delivery</xsl:element>
+                    <xsl:element name="customerID">
+                        <xsl:value-of select="current()/ReceiptOrderForGoods/VN"/>
+                    </xsl:element>
                     <xsl:element name="customer">
                         <xsl:value-of select="current()/ReceiptOrderForGoods/Customer"/>
                         <!--                        <xsl:apply-templates mode="customer" select="current()/ReceiptOrderForGoods/Customer"/>-->
@@ -20,6 +23,9 @@
 
                 <xsl:when test="ExpenditureOrderForGoods != ''">
                     <xsl:element name="msgType">shipment</xsl:element>
+                    <xsl:element name="customerID">
+                        <xsl:value-of select="current()/ExpenditureOrderForGoods/VN"/>
+                    </xsl:element>
                     <xsl:element name="customer">
                         <xsl:value-of select="current()/ExpenditureOrderForGoods/Customer"/>
                     </xsl:element>
@@ -27,15 +33,58 @@
                         <xsl:apply-templates mode="shipment" select="current()"/>
                     </xsl:element>
                 </xsl:when>
+                <xsl:when test="AddingGoods != ''">
+                    <xsl:element name="msgType">sku</xsl:element>
+                    <xsl:element name="customerID">
+                        <xsl:value-of select="current()/AddingGoods/VN"/>
+                    </xsl:element>
+                    <xsl:element name="sku">
+                        <xsl:apply-templates mode="addingGoods" select="current()"/>
+                    </xsl:element>
+                </xsl:when>
             </xsl:choose>
-            </Shell>
-<!--        </xsl:element>-->
+            <!--</Shell>-->
+        </xsl:element>
     </xsl:template>
 
+<!--Test-->
     <xsl:template mode="customer" match="Customer">
         <xsl:element name="customerrrr">
             <xsl:value-of select="current()"/>
         </xsl:element>
+    </xsl:template>
+
+    <xsl:template mode="addingGoods" match="AddingGoods">
+        <xsl:element name="article">
+            <xsl:value-of select="current()/ARTICLE"/>
+        </xsl:element>
+        <xsl:element name="upc">
+            <xsl:value-of select="current()/UPC"/>
+        </xsl:element>
+        <xsl:element name="name">
+            <xsl:value-of select="current()/NAME"/>
+        </xsl:element>
+        <xsl:element name="uofm">
+            <xsl:value-of select="current()/MEASURE"/>
+        </xsl:element>
+        <xsl:element name="storageLife">
+            <xsl:value-of select="current()/PRODUCT_LIFE"/>
+        </xsl:element>
+        <xsl:element name="storageCondition">
+            <xsl:value-of select="current()/STORAGE_POS"/>
+        </xsl:element>
+        <xsl:element name="productType">
+            <xsl:value-of select="current()/BILLING_CLASS"/>
+        </xsl:element>
+            
+<!--        <ARTICLE>COGENT1</ARTICLE>
+        <UPC>2000001720875</UPC>
+        <NAME>Матрас</NAME>
+        <MEASURE>шт</MEASURE>
+        <PRODUCT_LIFE>180</PRODUCT_LIFE>
+        <STORAGE_POS>НОРМ</STORAGE_POS>
+        <BILLING_CLASS>НЗ</BILLING_CLASS>
+-->        
     </xsl:template>
 
     <xsl:template mode="lineItems" match="Goods">
@@ -98,6 +147,7 @@
                 <xsl:value-of select="current()/AdressSupplier"/>
             </xsl:element>
         </xsl:element>
+
         <xsl:element name="vehicle">
             <xsl:element name="licencePlate">
                 <xsl:value-of select="current()/NumberCar"/>
