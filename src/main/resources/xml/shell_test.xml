@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell>
+    <msgType>delivery</msgType>
+    <customer>Хеллманн</customer>
+    <deliveryOrder>
+        <orderNo>ТС-00000019</orderNo>
+        <orderDate>2021-01-17T11:51:23.206+03:00</orderDate>
+        <plannedDate>2021-01-17T11:51:23.206+03:00</plannedDate>
+        <orderType>Поставка</orderType>
+        <deliveryType>Приход от поставщика</deliveryType>
+        <contractor>
+            <code>УТ-УТ000047</code>
+            <name>Winch Solutions Ltd</name>
+            <adress>109044, Москва г, 1-я Дубровская ул, дом 1, корпус 2, внутригородская территория муниципальный округ Таганский</adress>
+        </contractor>
+        <vehicle>
+            <licencePlate>ПР896Г/98</licencePlate>
+            <driver>Иванов Константин Александрович</driver>
+        </vehicle>
+        <lineItem>
+            <lineNumber>1</lineNumber>
+            <article>B2010015840A0</article>
+            <name>B2010015840A0 ignition coil</name>
+            <qty>30</qty>
+            <category>0</category>
+            <mark2>ТС-00000019</mark2>
+            <comment/>
+        </lineItem>
+        <lineItem>
+            <lineNumber>2</lineNumber>
+            <article>E1088837734C0</article>
+            <name>E1088837734C0 Прокладка головок блока цилиндров</name>
+            <qty>30</qty>
+            <category>0</category>
+            <mark2>ТС-00000019</mark2>
+            <comment/>
+        </lineItem>
+    </deliveryOrder>
+</Shell>

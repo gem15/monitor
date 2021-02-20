@@ -24,6 +24,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.sevtrans.monitor.MonitorCommonException;
 import com.sevtrans.monitor.dto.Contractor;
 import com.sevtrans.monitor.dto.DeliveryOrder;
 import com.sevtrans.monitor.dto.ObjectFactory;
@@ -82,6 +83,7 @@ public class FtpMsg {
 
     private XmlUtiles xmlUtiles = new XmlUtiles();
 
+    @Deprecated
     public void fileProcessing() throws SocketException, IOException, TransformerException {
 
         log.info("FTP");
@@ -98,7 +100,7 @@ public class FtpMsg {
         if (!ftp.login("anonymous", "")) {
             // if (!ftp.login(user, password)) {
             ftp.logout();
-            //throw new Exception("Login Error");
+            // throw new Exception("Login Error");
         }
 
         FTPFileFilter filter = new FTPFileFilter() {
@@ -114,7 +116,7 @@ public class FtpMsg {
             System.out.println(currentFileName);
         }
 
-        //https://www.baeldung.com/java-try-with-resources
+        // https://www.baeldung.com/java-try-with-resources
         try (InputStream remoteInput = ftp.retrieveFileStream(listFile[0].getName())) {
             String result = new BufferedReader(new InputStreamReader(remoteInput)).lines()
                     .collect(Collectors.joining("\n"));
@@ -128,8 +130,8 @@ public class FtpMsg {
 
         // call completePendingCommand and check its return value to verify success. If
         if (!ftp.completePendingCommand()) {
-            //TODO make custom exception
-            //!!! throw new Exception("Completing Pending Commands Not Successfull");
+            // TODO make custom exception
+            // !!! throw new Exception("Completing Pending Commands Not Successfull");
         }
 
         ftp.logout();
@@ -138,78 +140,72 @@ public class FtpMsg {
         // #endregion
 
         // #region test marshalling
-/*         ObjectFactory factory = new ObjectFactory();
-        Shell shell = factory.createShell();
-        shell.setCustomer(1);
-        shell.setMsgType("УП");
-        Product product = new Product();
-        product.setArticle("art");
-        product.setName("Product Name");
-        product.setUpc("UPC");
-        shell.setProduct(product);
-        marshaller(shell);
-
-        Shell shell1 = new Shell();
-        shell1.setCustomer(1);
-        shell1.setMsgType("УП");
-
-        DeliveryOrder deliveryOrder = new DeliveryOrder();
-        deliveryOrder.setDeliveryType("dlvrType");
-
-        Vehicle vehicle = new Vehicle();
-        vehicle.setDriver("driver");
-        vehicle.setLicencePlate("lic");
-        deliveryOrder.setOrderNo("order#");
-        deliveryOrder.setOrderDate(getNow());
-        deliveryOrder.setOrderType("fack");
-        deliveryOrder.setPlannedDate(getNow());
-        Contractor contractor = new Contractor();
-        contractor.setAdress("supAdr");
-        contractor.setCode("supCode");
-        contractor.setName("supName");
-
-        OrderLineItem od = new OrderLineItem();
-        od.setArticle("A1");
-        od.setLineNumber(1);
-        od.setName("name of");
-        od.setQty(new BigDecimal("2.5"));
-        deliveryOrder.getLineItem().add(od);
-        OrderLineItem od1 = new OrderLineItem();
-        od1.setArticle("A1");
-        od1.setLineNumber(1);
-        deliveryOrder.getLineItem().add(od1);
-
-        shell1.setDeliveryOrder(deliveryOrder);
-        marshaller(shell1);
- */
+        /*
+         * ObjectFactory factory = new ObjectFactory(); Shell shell =
+         * factory.createShell(); shell.setCustomer(1); shell.setMsgType("УП"); Product
+         * product = new Product(); product.setArticle("art");
+         * product.setName("Product Name"); product.setUpc("UPC");
+         * shell.setProduct(product); marshaller(shell);
+         *
+         * Shell shell1 = new Shell(); shell1.setCustomer(1); shell1.setMsgType("УП");
+         *
+         * DeliveryOrder deliveryOrder = new DeliveryOrder();
+         * deliveryOrder.setDeliveryType("dlvrType");
+         *
+         * Vehicle vehicle = new Vehicle(); vehicle.setDriver("driver");
+         * vehicle.setLicencePlate("lic"); deliveryOrder.setOrderNo("order#");
+         * deliveryOrder.setOrderDate(getNow()); deliveryOrder.setOrderType("fack");
+         * deliveryOrder.setPlannedDate(getNow()); Contractor contractor = new
+         * Contractor(); contractor.setAdress("supAdr"); contractor.setCode("supCode");
+         * contractor.setName("supName");
+         *
+         * OrderLineItem od = new OrderLineItem(); od.setArticle("A1");
+         * od.setLineNumber(1); od.setName("name of"); od.setQty(new BigDecimal("2.5"));
+         * deliveryOrder.getLineItem().add(od); OrderLineItem od1 = new OrderLineItem();
+         * od1.setArticle("A1"); od1.setLineNumber(1);
+         * deliveryOrder.getLineItem().add(od1);
+         *
+         * shell1.setDeliveryOrder(deliveryOrder); marshaller(shell1);
+         */
         // #endregion
     }
 
-
-    public void proc() throws Exception {
+    public void proc() {
         MyFtpCLient ftp = new MyFtpCLient("localhost", 21, "anonymous", "");
-        ftp.open();
-        FTPFile[] files = ftp.listFiles("/");
+        try {
+            ftp.open();
+            FTPFile[] files = ftp.listFiles("/");
 
-        for (FTPFile file : files) {
-            // #1 get file from ftp
-            String source = ftp.get(file.getName());
-            // # 2 transform it //TODO xmlns=""
-            String output = xmlUtiles.transformer(source);
-            output=output.replaceAll( " xmlns=\"\"", "");
-            log.info(output);
-            // #3 validate
-            if (!xmlUtiles.validate(output.replaceAll( "xmlns=\"\"", ""),xmlSchema)){
-            log.error("Ошибка в файле "+file.getName());
-                continue;
+            for (FTPFile file : files) {
+                // #1 get file from ftp
+                String source = ftp.get(file.getName());
+
+                // # 2 transform it //TODO xmlns=""
+                String output = xmlUtiles.transformer(source);
+                output = output.replaceAll(" xmlns=\"\"", "");
+                log.info(output);
+
+                // #3 validate
+                if (!xmlUtiles.validate(output.replaceAll("xmlns=\"\"", ""), xmlSchema)) {
+                    log.error("Ошибка в файле " + file.getName());
+                    continue;
+                }
+
+                // #4 unmarshall with validation
+                Shell shell = xmlUtiles.unmarshaller(output, Shell.class);//, xmlSchema
+                log.info(shell.getMsgType());
             }
-
-            // #4 unmarshall with validation
-            Shell shell = xmlUtiles.unmarshaller(output, Shell.class);//, xmlSchema
-            log.info(shell.getMsgType());
-        }
 //TODO ftp delete source file
-        ftp.close();
+            ftp.close();
+        } catch (MonitorCommonException me) {
+            log.error(me.getMessage());
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            log.info("Something goes wrong///");
+            e.printStackTrace();
+        }
+
 
     }
 }

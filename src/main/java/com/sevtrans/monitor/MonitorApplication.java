@@ -27,14 +27,14 @@ public class MonitorApplication implements CommandLineRunner {
 //		FtpMsg ftpMsg=new FtpMsg();
 		// ftpMsg.fileProcessing();
 
-//		ftpMsg.proc();//working
+		ftpMsg.proc();//working
 	}
 
 
-	@Bean
-	public FtpMsg ftpMsg(){
-		return new FtpMsg();
-	}
+	// @Bean
+	// public FtpMsg ftpMsg(){
+	// 	return new FtpMsg();
+	// }
 	/*
 	 * public String transformer(String input) throws TransformerException {
 	 * TransformerFactory factory = TransformerFactory.newInstance(); Source xslt =

@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
+import com.sevtrans.monitor.MonitorCommonException;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPFileFilter;
@@ -29,20 +30,26 @@ public class MyFtpCLient {
         this.password = password;
     }
 
-    public void open() throws Exception {
+    public void open() throws MonitorCommonException {
         ftp = new FTPClient();
-        ftp.connect(server, port);
-        ftp.enterLocalPassiveMode();
-        int reply = ftp.getReplyCode();
-        if (!FTPReply.isPositiveCompletion(reply)) {
-            ftp.disconnect();
-            throw new IOException("Exception in connecting to FTP Server");
-        }
+        try {
+            ftp.connect(server, port);
 
-        // TODO enhance ftp.login
-        if (!ftp.login(user, password)) {
-            ftp.logout();
-            throw new Exception("Login Error");// TODO make customt exception
+            ftp.enterLocalPassiveMode();
+            int reply = ftp.getReplyCode();
+            if (!FTPReply.isPositiveCompletion(reply)) {
+                ftp.disconnect();
+                //throw new IOException("Exception in connecting to FTP Server");
+            }
+
+            // TODO enhance ftp.login
+            if (!ftp.login(user, password)) {
+                ftp.logout();
+                //throw new Exception("Login Error");// TODO make customt exception
+            }
+        } catch (IOException e) {
+            //e.printStackTrace();
+            throw new MonitorCommonException(e.getMessage());
         }
     }
 
@@ -76,7 +83,7 @@ public class MyFtpCLient {
     public String get(String fileName) throws IOException {
         InputStream remoteInput = ftp.retrieveFileStream(fileName);
 //        completePendingCommand
-        if(!ftp.completePendingCommand()){
+        if (!ftp.completePendingCommand()) {
             System.out.println("Completing Pending Commands Not Successfull");
         }
 

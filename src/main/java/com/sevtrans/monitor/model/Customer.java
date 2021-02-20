@@ -13,6 +13,8 @@
  */
 package com.sevtrans.monitor.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -24,9 +26,9 @@ public class Customer implements Serializable {
 	}
 	
 	@Column(name="id", nullable=false, length=38)	
-	@Id	
-	@GeneratedValue(generator="COM_SEVTRANS_MONITOR_MODEL_CUSTOMER_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="COM_SEVTRANS_MONITOR_MODEL_CUSTOMER_ID_GENERATOR", strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="seqq") })	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqq")
+	@GenericGenerator(name = "seqq", strategy = "com.sevtrans.monitor.model.StringPrefixedSequenceIdGenerator",	parameters = {@org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),	@org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "0102"), @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%d") })
 	private String Id;
 	
 	@Column(name="fk_id", nullable=true, length=38)	
