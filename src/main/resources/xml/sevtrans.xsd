@@ -101,7 +101,7 @@
         <xs:sequence>
             <xs:element name="code" type="xs:string"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="adress" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 

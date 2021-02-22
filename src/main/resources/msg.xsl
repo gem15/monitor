@@ -1,6 +1,6 @@
 <!--<?xml version="1.0" encoding="UTF-8"?>-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+                xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <!--    <xsl:template match="Shell">
@@ -19,9 +19,10 @@
         <Shell xmlns="http://www.sevtrans.com">
             <!--        <xsl:element name="Shell">-->
             <xsl:choose>
-                <!--                <xsl:when test="Shell != ''">
-                    <xsl:element name="ZZZ"/>
-                    <xsl:copy-of><xsl:apply-templates select="current()/@*|node()" /></xsl:copy-of>
+<!--
+                <xsl:when test="Shell != ''">
+                    <xsl:element name="msgType">shipment</xsl:element>
+                    <xsl:copy-of select="current()/Shell"/>
                 </xsl:when>
 -->
                 <xsl:when test="ReceiptOrderForGoods != ''">
@@ -34,12 +35,8 @@
                         <!--                        <xsl:apply-templates mode="customer" select="current()/ReceiptOrderForGoods/Customer"/>-->
                     </xsl:element>
                     <xsl:apply-templates mode="delivery" select="current()"/>
-
-                    <!--                    <xsl:element name="deliveryOrder">
-                        <xsl:apply-templates mode="delivery" select="current()"/>
-                    </xsl:element>
--->
                 </xsl:when>
+
                 <xsl:when test="ExpenditureOrderForGoods != ''">
                     <xsl:element name="msgType">shipment</xsl:element>
                     <xsl:element name="customerID">
@@ -52,6 +49,7 @@
                         <xsl:apply-templates mode="shipment" select="current()"/>
                     </xsl:element>
                 </xsl:when>
+
                 <xsl:when test="AddingGoods != ''">
                     <xsl:element name="msgType">sku</xsl:element>
                     <xsl:element name="customerID">
@@ -106,6 +104,47 @@
 -->
     </xsl:template>
 
+    <xsl:template name="order" xmlns="http://www.sevtrans.com">
+        <xsl:element name="orderNo">
+            <xsl:value-of select="current()/Number"/>
+        </xsl:element>
+        <xsl:element name="orderDate">
+            <!--            <xsl:value-of select="current()/Date"/>-->
+            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
+        </xsl:element>
+        <xsl:element name="plannedDate">
+            <!--            <xsl:value-of select="current()/PlannedDeliveryDate"/>-->
+            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
+        </xsl:element>
+        <xsl:element name="orderType">
+            <xsl:value-of select="current()/OrderType"/>
+        </xsl:element>
+        <xsl:element name="deliveryType">
+            <xsl:value-of select="current()/TypeOfDelivery"/>
+        </xsl:element>
+        <xsl:element name="contractor">
+            <xsl:element name="code">
+                <xsl:value-of select="current()/IDSupplier"/>
+            </xsl:element>
+            <xsl:element name="name">
+                <xsl:value-of select="current()/NameSupplier"/>
+            </xsl:element>
+            <xsl:element name="adress">
+                <xsl:value-of select="current()/AdressSupplier"/>
+            </xsl:element>
+        </xsl:element>
+
+        <xsl:element name="vehicle">
+            <xsl:element name="licencePlate">
+                <xsl:value-of select="current()/NumberCar"/>
+            </xsl:element>
+            <xsl:element name="driver">
+                <xsl:value-of select="current()/Driver"/>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+
     <xsl:template mode="lineItems" match="Goods">
         <lineItem xmlns="http://www.sevtrans.com">
             <xsl:element name="lineNumber">
@@ -139,43 +178,45 @@
         </xsl:element>
 -->
         <deliveryOrder xmlns="http://www.sevtrans.com">
-            <xsl:element name="orderNo">
-                <xsl:value-of select="current()/Number"/>
-            </xsl:element>
-            <xsl:element name="orderDate">
-                <!--            <xsl:value-of select="current()/Date"/>-->
-                <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
-            </xsl:element>
-            <xsl:element name="plannedDate">
-                <!--            <xsl:value-of select="current()/PlannedDeliveryDate"/>-->
-                <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
-            </xsl:element>
-            <xsl:element name="orderType">
-                <xsl:value-of select="current()/OrderType"/>
-            </xsl:element>
-            <xsl:element name="deliveryType">
-                <xsl:value-of select="current()/TypeOfDelivery"/>
-            </xsl:element>
-            <xsl:element name="contractor">
-                <xsl:element name="code">
-                    <xsl:value-of select="current()/IDSupplier"/>
-                </xsl:element>
-                <xsl:element name="name">
-                    <xsl:value-of select="current()/NameSupplier"/>
-                </xsl:element>
-                <xsl:element name="adress">
-                    <xsl:value-of select="current()/AdressSupplier"/>
-                </xsl:element>
-            </xsl:element>
-
-            <xsl:element name="vehicle">
-                <xsl:element name="licencePlate">
-                    <xsl:value-of select="current()/NumberCar"/>
-                </xsl:element>
-                <xsl:element name="driver">
-                    <xsl:value-of select="current()/Driver"/>
-                </xsl:element>
-            </xsl:element>
+            <xsl:call-template name="order"/>
+            <!--
+                        <xsl:element name="orderNo">
+                            <xsl:value-of select="current()/Number"/>
+                        </xsl:element>
+                        <xsl:element name="orderDate">
+                            &lt;!&ndash;            <xsl:value-of select="current()/Date"/>&ndash;&gt;
+                            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="plannedDate">
+                            &lt;!&ndash;            <xsl:value-of select="current()/PlannedDeliveryDate"/>&ndash;&gt;
+                            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="orderType">
+                            <xsl:value-of select="current()/OrderType"/>
+                        </xsl:element>
+                        <xsl:element name="deliveryType">
+                            <xsl:value-of select="current()/TypeOfDelivery"/>
+                        </xsl:element>
+                        <xsl:element name="contractor">
+                            <xsl:element name="code">
+                                <xsl:value-of select="current()/IDSupplier"/>
+                            </xsl:element>
+                            <xsl:element name="name">
+                                <xsl:value-of select="current()/NameSupplier"/>
+                            </xsl:element>
+                            <xsl:element name="adress">
+                                <xsl:value-of select="current()/AdressSupplier"/>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:element name="vehicle">
+                            <xsl:element name="licencePlate">
+                                <xsl:value-of select="current()/NumberCar"/>
+                            </xsl:element>
+                            <xsl:element name="driver">
+                                <xsl:value-of select="current()/Driver"/>
+                            </xsl:element>
+                        </xsl:element>
+            -->
             <xsl:apply-templates mode="lineItems" select="current()/Goods"/>
         </deliveryOrder>
         <!--        <xsl:for-each select="current()/Goods">

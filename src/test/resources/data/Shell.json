@@ -1,0 +1,44 @@
+
+{
+  "Shell": {
+    "msgType": "delivery",
+    "customer": "Хеллманн",
+    "deliveryOrder": {
+      "orderNo": "ТС-00000019",
+      "orderDate": "2021-01-17T11:51:23.206+03:00",
+      "plannedDate": "2021-01-17T11:51:23.206+03:00",
+      "orderType": "Поставка",
+      "deliveryType": "Приход от поставщика",
+      "contractor": {
+        "code": "УТ-УТ000047",
+        "name": "Winch Solutions Ltd",
+        "address": "109044, Москва г, 1-я Дубровская ул, дом 1, корпус 2, внутригородская территория муниципальный округ Таганский"
+      },
+      "vehicle": {
+        "licencePlate": "ПР896Г/98",
+        "driver": "Иванов Константин Александрович"
+      },
+      "lineItem": [
+        {
+          "lineNumber": "1",
+          "article": "B2010015840A0",
+          "name": "B2010015840A0 ignition coil",
+          "qty": "30",
+          "category": "0",
+          "mark2": "ТС-00000019",
+          "comment": null
+        },
+        {
+          "lineNumber": "2",
+          "article": "E1088837734C0",
+          "name": "E1088837734C0 Прокладка головок блока цилиндров",
+          "qty": "30",
+          "category": "0",
+          "mark2": "ТС-00000019",
+          "comment": null
+        }
+      ]
+    }
+  }
+}
+

@@ -2,12 +2,27 @@ C:\Users\Father\Documents\Oxygen\msg.xsl
 D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
 *Monitor project* _fdf_
 
+* [red]#Не забыть#
+- [red white-background big]*Важно* - всё работающее остаётся нетронутым
+- REST запрос (тот самый JSON)
+- выгрузка - unmarshalling
+- алгоритм цикл по клиентам цикл по способам обмена выбор атрибутов
+
+Боль
 [red]#red text# [yellow-background]#on yellow#
 [big]#large# [red yellow-background big]*all bold*
 
-* bullet
-- bullet
-- bullet
+Для чего всё это
+
+. Ordered
+. ыва
+. ав
+
+Самый пулярный язык серверного программирования для Enterprise Java. Spring Boot.
+* Исползуемые технологии
+* Java
+- Spring Boot 2
+- JAXB
 
 [red]#Боль -Решение - Благодарность#
 

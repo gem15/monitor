@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell>
+<Shell xmlns="http://www.sevtrans.com">
     <msgType>delivery</msgType>
     <customer>Хеллманн</customer>
     <deliveryOrder>
@@ -11,7 +11,7 @@
         <contractor>
             <code>УТ-УТ000047</code>
             <name>Winch Solutions Ltd</name>
-            <adress>109044, Москва г, 1-я Дубровская ул, дом 1, корпус 2, внутригородская территория муниципальный округ Таганский</adress>
+            <address>109044, Москва г, 1-я Дубровская ул, дом 1, корпус 2, внутригородская территория муниципальный округ Таганский</address>
         </contractor>
         <vehicle>
             <licencePlate>ПР896Г/98</licencePlate>
