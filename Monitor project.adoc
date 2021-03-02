@@ -19,6 +19,15 @@ D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
 . ав
 
 Самый пулярный язык серверного программирования для Enterprise Java. Spring Boot.
+Преимущества Java
+https://medium.com/webbasedevelopment/why-java-is-the-most-preferred-programming-language-for-building-end-to-end-enterprise-solutions-731027246f2a
+From Java to C# and back again
+https://blog.allegro.tech/2018/06/from-java-to-c-sharp-and-back-again.html
+Why Is Spring Boot Popular?
+https://scand.com/company/blog/pros-and-cons-of-using-spring-boot/
+Application Performance Monitoring, APM)
+Как вы знаете, фреймворк Spring предоставляет легкий контейнер.
+Его можно активировать без использования веб-сервера или сервера приложений.
 * Исползуемые технологии
 * Java
 - Spring Boot 2
