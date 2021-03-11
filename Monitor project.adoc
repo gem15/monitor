@@ -25,6 +25,7 @@ From Java to C# and back again
 https://blog.allegro.tech/2018/06/from-java-to-c-sharp-and-back-again.html
 Why Is Spring Boot Popular?
 https://scand.com/company/blog/pros-and-cons-of-using-spring-boot/
+Запуск как сервис
 Application Performance Monitoring, APM)
 Как вы знаете, фреймворк Spring предоставляет легкий контейнер.
 Его можно активировать без использования веб-сервера или сервера приложений.

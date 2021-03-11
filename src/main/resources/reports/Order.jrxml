@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Order" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75436105-ad8b-4117-b42f-7c7f65103da6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="doc_xml"/>
+	<parameter name="orderNo" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Номер заказа]]></parameterDescription>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/Shell/deliveryOrder/lineItem]]>
+	</queryString>
+	<field name="lineNumber" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="lineNumber"/>
+		<fieldDescription><![CDATA[lineNumber]]></fieldDescription>
+	</field>
+	<field name="article" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="article"/>
+		<fieldDescription><![CDATA[article]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="name"/>
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="qty"/>
+		<fieldDescription><![CDATA[qty]]></fieldDescription>
+	</field>
+	<field name="category" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="category"/>
+		<fieldDescription><![CDATA[category]]></fieldDescription>
+	</field>
+	<field name="mark2" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="mark2"/>
+		<fieldDescription><![CDATA[mark2]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="77" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="210" y="7" width="50" height="16" uuid="437e7f33-88aa-4665-b7ec-00d774387225"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Заказ #]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="270" y="7" width="54" height="16" uuid="661ead5e-2163-46ce-8de1-12146cc834dd"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{orderNo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="30" uuid="fa2c2b3d-8ba2-4a81-a82f-28b5cce5cc8a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f4a328e-9a94-4ed5-8fb5-97b0e9deda20"/>
+				</reportElement>
+				<text><![CDATA[lineNumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="80" height="30" uuid="0c29c657-2c09-4187-af10-a748be0a6de1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32353971-4afd-4078-a20a-daad310403ab"/>
+				</reportElement>
+				<text><![CDATA[article]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="1" width="240" height="30" uuid="79d67320-2eda-4dd8-9731-2607ee5beae7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8979052c-8528-4e2e-9891-58999e86c065"/>
+				</reportElement>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="30" uuid="68fe342b-cbe1-43bc-8b33-d580886feb7b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23206fa1-83be-4c4c-be8b-7ef7c7f5fc38"/>
+				</reportElement>
+				<text><![CDATA[qty]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="18" uuid="abe27cbb-a024-4266-8a48-a1a0c759e4c1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f4a328e-9a94-4ed5-8fb5-97b0e9deda20"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{lineNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="80" height="18" uuid="5ee8696e-bb85-4478-a5cd-4b9d831cc2c5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32353971-4afd-4078-a20a-daad310403ab"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{article}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="1" width="240" height="18" uuid="a2c2e5f1-7fc4-4f61-b211-d9ee3b515091">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8979052c-8528-4e2e-9891-58999e86c065"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="18" uuid="1349dd76-8148-4cbe-8ba4-e4808778864f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23206fa1-83be-4c4c-be8b-7ef7c7f5fc38"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="0" y="0" width="551" height="21" uuid="fedcb6ce-057f-40ee-a051-4ecd8edea995"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

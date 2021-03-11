@@ -21,6 +21,7 @@ public class MonitorApplication implements CommandLineRunner {
 
 	@Autowired
 	FtpMsg ftpMsg;
+
 	@Override
 	public void run(String... args) throws Exception {
 		log.info("command runner");

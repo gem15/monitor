@@ -8,9 +8,10 @@
         </xs:annotation>
 
         <xs:complexType>
-            <xs:sequence>
+            <xs:sequence minOccurs="1" maxOccurs="1">
                 <xs:element name="msgType" type="xs:string"/>
-                <xs:element name="customer" type="xs:string"/>
+                <xs:element name="customerID" type="xs:int" minOccurs="1"/>
+                <xs:element name="customer" type="xs:string" minOccurs="1"/>
                 <xs:choice minOccurs="1" maxOccurs="1">
                     <xs:element name="product" type="Product">
                         <xs:annotation>

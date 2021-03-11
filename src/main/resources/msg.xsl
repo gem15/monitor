@@ -1,6 +1,6 @@
 <!--<?xml version="1.0" encoding="UTF-8"?>-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <!--    <xsl:template match="Shell">
@@ -15,16 +15,8 @@
     </xsl:template>
 -->
     <xsl:template match="/">
-
         <Shell xmlns="http://www.sevtrans.com">
-            <!--        <xsl:element name="Shell">-->
             <xsl:choose>
-<!--
-                <xsl:when test="Shell != ''">
-                    <xsl:element name="msgType">shipment</xsl:element>
-                    <xsl:copy-of select="current()/Shell"/>
-                </xsl:when>
--->
                 <xsl:when test="ReceiptOrderForGoods != ''">
                     <xsl:element name="msgType">delivery</xsl:element>
                     <xsl:element name="customerID">
@@ -55,13 +47,12 @@
                     <xsl:element name="customerID">
                         <xsl:value-of select="current()/AddingGoods/VN"/>
                     </xsl:element>
-                    <xsl:element name="sku">
+                    <xsl:element name="product">
                         <xsl:apply-templates mode="addingGoods" select="current()"/>
                     </xsl:element>
                 </xsl:when>
             </xsl:choose>
         </Shell>
-        <!--        </xsl:element>-->
     </xsl:template>
 
     <!--Test-->
@@ -129,7 +120,7 @@
             <xsl:element name="name">
                 <xsl:value-of select="current()/NameSupplier"/>
             </xsl:element>
-            <xsl:element name="adress">
+            <xsl:element name="address">
                 <xsl:value-of select="current()/AdressSupplier"/>
             </xsl:element>
         </xsl:element>
@@ -143,7 +134,6 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
-
 
     <xsl:template mode="lineItems" match="Goods">
         <lineItem xmlns="http://www.sevtrans.com">

@@ -182,11 +182,11 @@ public class FtpMsg {
 
                 // # 2 transform it //TODO xmlns=""
                 String output = xmlUtiles.transformer(source);
-                output = output.replaceAll(" xmlns=\"\"", "");
-                log.info(output);
+                 log.info(output);
 
                 // #3 validate
-                if (!xmlUtiles.validate(output.replaceAll("xmlns=\"\"", ""), xmlSchema)) {
+//                if (!xmlUtiles.validate(output.replaceAll("xmlns=\"\"", ""), xmlSchema)) {
+                if (!xmlUtiles.validate(output, xmlSchema)) {
                     log.error("Ошибка в файле " + file.getName());
                     continue;
                 }
