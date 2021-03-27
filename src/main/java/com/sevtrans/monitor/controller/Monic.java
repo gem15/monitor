@@ -37,11 +37,12 @@ public class Monic {
 
     @GetMapping(value = "/report1", produces = APPLICATION_PDF_VALUE)
     public    byte[] getFile1() throws IOException {
+/*
 
         // #1 get file from ftp
         String source = ftp.get(file.getName());
 
-        // # 2 transform it //TODO xmlns=""
+        // # 2 transform it
         String output = xmlUtiles.transformer(source);
         log.info(output);
 
@@ -54,6 +55,7 @@ public class Monic {
 
         // #4 unmarshall with validation
         Shell shell = xmlUtiles.unmarshaller(output, Shell.class);//, xmlSchema
+*/
 
         return null;
     }

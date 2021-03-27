@@ -1,8 +1,19 @@
 <!--<?xml version="1.0" encoding="UTF-8"?>-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs"
+    xmlns:st="http://www.sevtrans.com" version="2.0">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
+    <xsl:function name="st:myDateTime">
+        <xsl:param name="dt"/>
+        <xsl:value-of select="concat(
+            substring($dt, 7, 4),'-',
+            substring($dt, 4, 2),'-',
+            substring($dt, 1, 2),'T',
+            substring($dt, 12, 2),':',
+            substring($dt, 15, 2)
+            )"/>
+    </xsl:function>
     <!--    <xsl:template match="Shell">
         <xsl:element name="msgType">ZZZZ</xsl:element>
         <xsl:copy><xsl:apply-templates select="@*|node()" /></xsl:copy>
@@ -14,10 +25,12 @@
 -\->
     </xsl:template>
 -->
+    
     <xsl:template match="/">
         <Shell xmlns="http://www.sevtrans.com">
             <xsl:choose>
                 <xsl:when test="ReceiptOrderForGoods != ''">
+                    
                     <xsl:element name="msgType">delivery</xsl:element>
                     <xsl:element name="customerID">
                         <xsl:value-of select="current()/ReceiptOrderForGoods/VN"/>
@@ -96,16 +109,17 @@
     </xsl:template>
 
     <xsl:template name="order" xmlns="http://www.sevtrans.com">
+     
         <xsl:element name="orderNo">
             <xsl:value-of select="current()/Number"/>
         </xsl:element>
         <xsl:element name="orderDate">
-            <!--            <xsl:value-of select="current()/Date"/>-->
-            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
+            <xsl:variable name="dt" select="current()/Date"/>
+            <xsl:value-of select="st:myDateTime($dt)"/>
         </xsl:element>
         <xsl:element name="plannedDate">
-            <!--            <xsl:value-of select="current()/PlannedDeliveryDate"/>-->
-            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
+            <xsl:variable name="dt" select="current()/PlannedDeliveryDate"/>
+            <xsl:value-of select="st:myDateTime($dt)"/>
         </xsl:element>
         <xsl:element name="orderType">
             <xsl:value-of select="current()/OrderType"/>
@@ -162,11 +176,6 @@
     </xsl:template>
 
     <xsl:template mode="delivery" match="ReceiptOrderForGoods">
-        <!--        <xsl:element name="DDT">
-            <xsl:value-of select="current()/Date"/>
-            <xsl:text>T00:00:00.000</xsl:text>
-        </xsl:element>
--->
         <deliveryOrder xmlns="http://www.sevtrans.com">
             <xsl:call-template name="order"/>
             <!--

@@ -180,7 +180,7 @@ public class FtpMsg {
                 // #1 get file from ftp
                 String source = ftp.get(file.getName());
 
-                // # 2 transform it //TODO xmlns=""
+                // # 2 transform it
                 String output = xmlUtiles.transformer(source);
                  log.info(output);
 
