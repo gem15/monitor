@@ -46,7 +46,7 @@ public class Customer implements Serializable {
 	private String Inn_zak;
 	
 	@Column(name="id_klient", nullable=true)	
-	private int Id_klient;
+	private int clientID;
 	
 	@Column(name="id_kopf", nullable=true, length=38)	
 	private String Id_kopf;
@@ -293,12 +293,12 @@ public class Customer implements Serializable {
 		return Id_usr;
 	}
 	
-	public void setId_klient(int value) {
-		this.Id_klient = value;
+	public void setClientID(int value) {
+		this.clientID = value;
 	}
 	
-	public int getId_klient() {
-		return Id_klient;
+	public int getClientID() {
+		return clientID;
 	}
 	
 	public void setN_zak(String value) {

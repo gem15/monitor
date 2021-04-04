@@ -17,7 +17,15 @@
 
         <xs:complexType>
             <xs:sequence minOccurs="1" maxOccurs="1">
-                <xs:element name="msgType" type="xs:string"/>
+                <xs:element name="msgType">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="delivery"/>
+                            <xs:enumeration value="shipment"/>
+                            <xs:enumeration value="goods"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="customerID" type="xs:int" minOccurs="1"/>
                 <xs:element name="customer" type="xs:string" minOccurs="1"/>
                 <xs:choice minOccurs="1" maxOccurs="1">

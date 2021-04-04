@@ -11,7 +11,7 @@
             substring($dt, 4, 2),'-',
             substring($dt, 1, 2),'T',
             substring($dt, 12, 2),':',
-            substring($dt, 15, 2)
+            substring($dt, 15, 2),':00'
             )"/>
     </xsl:function>
     <!--    <xsl:template match="Shell">
@@ -30,14 +30,12 @@
         <Shell xmlns="http://www.sevtrans.com">
             <xsl:choose>
                 <xsl:when test="ReceiptOrderForGoods != ''">
-                    
                     <xsl:element name="msgType">delivery</xsl:element>
                     <xsl:element name="customerID">
                         <xsl:value-of select="current()/ReceiptOrderForGoods/VN"/>
                     </xsl:element>
                     <xsl:element name="customer">
                         <xsl:value-of select="current()/ReceiptOrderForGoods/Customer"/>
-                        <!--                        <xsl:apply-templates mode="customer" select="current()/ReceiptOrderForGoods/Customer"/>-->
                     </xsl:element>
                     <xsl:apply-templates mode="delivery" select="current()"/>
                 </xsl:when>
@@ -50,9 +48,7 @@
                     <xsl:element name="customer">
                         <xsl:value-of select="current()/ExpenditureOrderForGoods/Customer"/>
                     </xsl:element>
-                    <xsl:element name="shipmentOrder">
-                        <xsl:apply-templates mode="shipment" select="current()"/>
-                    </xsl:element>
+                    <xsl:apply-templates mode="shipment" select="current()"/>
                 </xsl:when>
 
                 <xsl:when test="AddingGoods != ''">
@@ -75,7 +71,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template mode="addingGoods" match="AddingGoods">
+    <xsl:template mode="addingGoods" match="AddingGoods" xmlns="http://www.sevtrans.com">
         <xsl:element name="article">
             <xsl:value-of select="current()/ARTICLE"/>
         </xsl:element>
@@ -109,7 +105,6 @@
     </xsl:template>
 
     <xsl:template name="order" xmlns="http://www.sevtrans.com">
-     
         <xsl:element name="orderNo">
             <xsl:value-of select="current()/Number"/>
         </xsl:element>
@@ -118,8 +113,17 @@
             <xsl:value-of select="st:myDateTime($dt)"/>
         </xsl:element>
         <xsl:element name="plannedDate">
-            <xsl:variable name="dt" select="current()/PlannedDeliveryDate"/>
-            <xsl:value-of select="st:myDateTime($dt)"/>
+            <xsl:choose>
+                <xsl:when test="current()/PlannedDeliveryDate">
+                    <xsl:variable name="dt" select="current()/PlannedDeliveryDate"/>
+                    <xsl:value-of select="st:myDateTime($dt)"/>
+                </xsl:when>
+                <xsl:when test="current()/PlannedShipmentDate">
+                    <xsl:variable name="dt" select="current()/PlannedShipmentDate"/>
+                    <xsl:value-of select="st:myDateTime($dt)"/>
+                </xsl:when>
+            </xsl:choose>
+            
         </xsl:element>
         <xsl:element name="orderType">
             <xsl:value-of select="current()/OrderType"/>
@@ -129,14 +133,40 @@
         </xsl:element>
         <xsl:element name="contractor">
             <xsl:element name="code">
-                <xsl:value-of select="current()/IDSupplier"/>
+                <xsl:choose>
+                    <xsl:when test="current()/IDSupplier">
+                        <xsl:value-of select="current()/IDSupplier"/>
+                    </xsl:when>
+                    <xsl:when test="current()/IDConsignee">
+                        <xsl:value-of select="current()/IDConsignee"/>
+                    </xsl:when>
+                </xsl:choose>
             </xsl:element>
+            
             <xsl:element name="name">
-                <xsl:value-of select="current()/NameSupplier"/>
+<!--                <xsl:value-of select="current()/NameSupplier"/>-->
+                <xsl:choose>
+                    <xsl:when test="current()/NameSupplier">
+                        <xsl:value-of select="current()/NameSupplier"/>
+                    </xsl:when>
+                    <xsl:when test="current()/NameConsignee">
+                        <xsl:value-of select="current()/NameConsignee"/>
+                    </xsl:when>
+                </xsl:choose>
             </xsl:element>
+            
             <xsl:element name="address">
                 <xsl:value-of select="current()/AdressSupplier"/>
+                <xsl:choose>
+                    <xsl:when test="current()/AdressSupplier">
+                        <xsl:value-of select="current()/AdressSupplier"/>
+                    </xsl:when>
+                    <xsl:when test="current()/AdressConsignee">
+                        <xsl:value-of select="current()/AdressConsignee"/>
+                    </xsl:when>
+                </xsl:choose>
             </xsl:element>
+            
         </xsl:element>
 
         <xsl:element name="vehicle">
@@ -247,42 +277,9 @@
     </xsl:template>
 
     <xsl:template mode="shipment" match="ExpenditureOrderForGoods">
-        <xsl:element name="orderNo">
-            <xsl:value-of select="current()/Number"/>
-        </xsl:element>
-        <xsl:element name="orderDate">
-            <!--            <xsl:value-of select="current()/Date"/>-->
-            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
-        </xsl:element>
-        <xsl:element name="plannedDate">
-            <!--            <xsl:value-of select="current()/PlannedDeliveryDate"/>-->
-            <xsl:text>2021-01-17T11:51:23.206+03:00</xsl:text>
-        </xsl:element>
-        <xsl:element name="orderType">
-            <xsl:value-of select="current()/OrderType"/>
-        </xsl:element>
-        <xsl:element name="deliveryType">
-            <xsl:value-of select="current()/TypeOfDelivery"/>
-        </xsl:element>
-        <xsl:element name="contractor">
-            <xsl:element name="code">
-                <xsl:value-of select="current()/IDConsignee"/>
-            </xsl:element>
-            <xsl:element name="name">
-                <xsl:value-of select="current()/NameConsignee"/>
-            </xsl:element>
-            <xsl:element name="adress">
-                <xsl:value-of select="current()/AdressConsignee"/>
-            </xsl:element>
-        </xsl:element>
-        <xsl:element name="vehicle">
-            <xsl:element name="licencePlate">
-                <xsl:value-of select="current()/NumberCar"/>
-            </xsl:element>
-            <xsl:element name="driver">
-                <xsl:value-of select="current()/Driver"/>
-            </xsl:element>
-        </xsl:element>
-        <xsl:apply-templates mode="lineItems" select="current()/Goods"/>
+        <deliveryOrder xmlns="http://www.sevtrans.com">
+            <xsl:call-template name="order"/>
+            <xsl:apply-templates mode="lineItems" select="current()/Goods"/>
+        </deliveryOrder>
     </xsl:template>
 </xsl:stylesheet>

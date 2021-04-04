@@ -14,11 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 // @EnableScheduling
 @SpringBootApplication
-public class MonitorApplication implements CommandLineRunner {
+//public class MonitorApplication implements CommandLineRunner {
+public class MonitorApplication  {
 	public static void main(String[] args) {
 		SpringApplication.run(MonitorApplication.class, args);
 	}
 
+/*
 	@Autowired
 	FtpMsg ftpMsg;
 
@@ -30,6 +32,7 @@ public class MonitorApplication implements CommandLineRunner {
 
 		ftpMsg.proc();//working
 	}
+*/
 
 
 	// @Bean
