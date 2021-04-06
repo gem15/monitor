@@ -30,8 +30,5 @@ public class IntegrationTest {
 //        Shvoc shvoc1=new Shvoc();
 //         t=shvocDao.save(shvoc1);
 //        System.out.println(t.getVal_id());
-
-
-
     }
 }

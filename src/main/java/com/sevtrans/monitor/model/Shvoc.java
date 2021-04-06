@@ -13,8 +13,6 @@
  */
 package com.sevtrans.monitor.model;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 import java.io.Serializable;
 import javax.persistence.*;
 /**
@@ -28,22 +26,25 @@ public class Shvoc implements Serializable {
 	public Shvoc() {
 	}
 	
-	@Column(name="val_id", nullable=false,length = 38)
-/*
-	@Id
-	@GeneratedValue(generator="COM_SEVTRANS_MONITOR_MODEL_SHVOC_VAL_ID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="COM_SEVTRANS_MONITOR_MODEL_SHVOC_VAL_ID_GENERATOR",
-			strategy="sequence", parameters={ @org.hibernate.annotations.Parameter(name="sequence", value="seqq") })
-*/
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqq")
-	@GenericGenerator(
-			name = "seqq",
-			strategy = "com.sevtrans.monitor.model.StringPrefixedSequenceIdGenerator",
-			parameters = {
-					@Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
-					@Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "0102"),
-					@Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%d") })//"%010d"
+	public boolean equals(Object aObj) {
+		if (aObj == this)
+			return true;
+		if (!(aObj instanceof Shvoc))
+			return false;
+		Shvoc shvoc = (Shvoc)aObj;
+		if ((getVal_id() != null && !getVal_id().equals(shvoc.getVal_id())) || (getVal_id() == null && shvoc.getVal_id() != null))
+			return false;
+		return true;
+	}
+	
+	public int hashCode() {
+		int hashcode = 0;
+		hashcode = hashcode + (getVal_id() == null ? 0 : getVal_id().hashCode());
+		return hashcode;
+	}
+	
+	@Column(name="val_id", nullable=false, length=38)	
+	@Id	
 	private String Val_id;
 	
 	@Column(name="hvoc_val_id", nullable=true, length=38)	
@@ -67,7 +68,7 @@ public class Shvoc implements Serializable {
 	@Column(name="tools", nullable=true, length=4000)	
 	private String Tools;
 	
-	@Column(name="data_begin", nullable=true)
+	@Column(name="data_begin", nullable=false)	
 	private java.sql.Timestamp Data_begin;
 	
 	@Column(name="data_end", nullable=true)	
@@ -224,5 +225,23 @@ public class Shvoc implements Serializable {
 	public String toString() {
 		return String.valueOf(getVal_id());
 	}
+	
+	@Transient	
+	private boolean _saved = false;
+	
+	public void onSave() {
+		_saved=true;
+	}
+	
+	
+	public void onLoad() {
+		_saved=true;
+	}
+	
+	
+	public boolean isSaved() {
+		return _saved;
+	}
+	
 	
 }
