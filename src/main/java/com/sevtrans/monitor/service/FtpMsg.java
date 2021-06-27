@@ -182,7 +182,7 @@ public class FtpMsg {
 
                 // # 2 transform it
                 String output = xmlUtiles.transformer(source);
-                 log.info(output);
+                log.info(output);
 
                 // #3 validate
 //                if (!xmlUtiles.validate(output.replaceAll("xmlns=\"\"", ""), xmlSchema)) {

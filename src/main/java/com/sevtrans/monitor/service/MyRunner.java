@@ -1,6 +1,7 @@
 package com.sevtrans.monitor.service;
 
 import org.springframework.beans.factory.annotation.Value;
+
 @Deprecated
 //@Component
 public class MyRunner {// implements CommandLineRunner {
@@ -38,10 +39,10 @@ public class MyRunner {// implements CommandLineRunner {
      */
 
     /**
-     * 
+     *
      * @param sSourcee
      * @param sXsltt
      * @return
      * @throws TransformerException
      */
- }
+}

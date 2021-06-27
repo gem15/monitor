@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sevtrans.com"
-    targetNamespace="http://www.sevtrans.com" elementFormDefault="qualified"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.sevtrans.com"
+           targetNamespace="http://www.sevtrans.com" elementFormDefault="qualified"
            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
     <xs:annotation>
         <xs:appinfo>
             <jaxb:globalBindings>
-                <jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime" parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime" printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
+                <jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime"
+                               parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+                               printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
             </jaxb:globalBindings>
         </xs:appinfo>
     </xs:annotation>
@@ -79,29 +81,29 @@
             <xs:documentation>Добавить док ин док аут</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="Order">
+            <xs:extension base="tns:Order">
                 <xs:sequence>
-                    
+
                 </xs:sequence>
             </xs:extension>
-            
+
         </xs:complexContent>
     </xs:complexType>
-    
+
     <xs:complexType name="DeliveryOrder">
         <xs:annotation>
             <xs:documentation>Добавить док ин док аут</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="Order">
+            <xs:extension base="tns:Order">
                 <xs:sequence>
-                    
+
                 </xs:sequence>
             </xs:extension>
-            
+
         </xs:complexContent>
     </xs:complexType>
-    
+
     <xs:complexType name="OrderLineItem">
         <xs:sequence>
             <xs:element name="lineNumber" type="xs:int"/>

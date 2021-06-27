@@ -16,11 +16,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Справочник товаров
- * 
+ *
  * <p>Java class for Product complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Product">
  *   &lt;complexContent>
@@ -38,18 +38,16 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Product", propOrder = {
-    "article",
-    "name",
-    "upc",
-    "uofm",
-    "storageLife",
-    "storageCondition",
-    "productType"
+        "article",
+        "name",
+        "upc",
+        "uofm",
+        "storageLife",
+        "storageCondition",
+        "productType"
 })
 public class Product {
 
@@ -65,11 +63,9 @@ public class Product {
 
     /**
      * Gets the value of the article property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getArticle() {
         return article;
@@ -77,11 +73,9 @@ public class Product {
 
     /**
      * Sets the value of the article property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setArticle(String value) {
         this.article = value;
@@ -89,11 +83,9 @@ public class Product {
 
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -101,11 +93,9 @@ public class Product {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -113,11 +103,9 @@ public class Product {
 
     /**
      * Gets the value of the upc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getUpc() {
         return upc;
@@ -125,11 +113,9 @@ public class Product {
 
     /**
      * Sets the value of the upc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setUpc(String value) {
         this.upc = value;
@@ -137,11 +123,9 @@ public class Product {
 
     /**
      * Gets the value of the uofm property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getUofm() {
         return uofm;
@@ -149,11 +133,9 @@ public class Product {
 
     /**
      * Sets the value of the uofm property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setUofm(String value) {
         this.uofm = value;
@@ -161,11 +143,9 @@ public class Product {
 
     /**
      * Gets the value of the storageLife property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     *
+     * @return possible object is
+     * {@link Integer }
      */
     public Integer getStorageLife() {
         return storageLife;
@@ -173,11 +153,9 @@ public class Product {
 
     /**
      * Sets the value of the storageLife property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Integer }
      */
     public void setStorageLife(Integer value) {
         this.storageLife = value;
@@ -185,11 +163,9 @@ public class Product {
 
     /**
      * Gets the value of the storageCondition property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getStorageCondition() {
         return storageCondition;
@@ -197,11 +173,9 @@ public class Product {
 
     /**
      * Sets the value of the storageCondition property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setStorageCondition(String value) {
         this.storageCondition = value;
@@ -209,11 +183,9 @@ public class Product {
 
     /**
      * Gets the value of the productType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getProductType() {
         return productType;
@@ -221,11 +193,9 @@ public class Product {
 
     /**
      * Sets the value of the productType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setProductType(String value) {
         this.productType = value;

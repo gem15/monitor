@@ -15,11 +15,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Добавить док ин док аут
- * 
+ *
  * <p>Java class for DeliveryOrder complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="DeliveryOrder">
  *   &lt;complexContent>
@@ -30,14 +30,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DeliveryOrder")
 public class DeliveryOrder
-    extends Order
-{
+        extends Order {
 
 
 }

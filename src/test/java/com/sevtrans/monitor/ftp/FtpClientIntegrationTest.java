@@ -16,11 +16,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Collection;
+
 import com.sevtrans.monitor.utils.MyFtpCLient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@TestInstance(Lifecycle.PER_CLASS) //https://stackoverflow.com/questions/52551718/what-use-is-testinstance-annotation-in-junit-5
+@TestInstance(Lifecycle.PER_CLASS)
+//https://stackoverflow.com/questions/52551718/what-use-is-testinstance-annotation-in-junit-5
 public class FtpClientIntegrationTest {//https://www.baeldung.com/java-ftp-client
 
     private FakeFtpServer fakeFtpServer;

@@ -22,11 +22,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Заказ на поставку/отгрузку
- * 
+ *
  * <p>Java class for Order complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Order">
  *   &lt;complexContent>
@@ -52,34 +52,32 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Order", propOrder = {
-    "orderNo",
-    "orderDate",
-    "plannedDate",
-    "orderType",
-    "deliveryType",
-    "contractor",
-    "vehicle",
-    "lineItem"
+        "orderNo",
+        "orderDate",
+        "plannedDate",
+        "orderType",
+        "deliveryType",
+        "contractor",
+        "vehicle",
+        "lineItem"
 })
 @XmlSeeAlso({
-    DeliveryOrder.class,
-    ShipmentOrder.class
+        DeliveryOrder.class,
+        ShipmentOrder.class
 })
 public class Order {
 
     @XmlElement(required = true)
     protected String orderNo;
     @XmlElement(required = true, type = String.class)
-    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlJavaTypeAdapter(Adapter1.class)
     @XmlSchemaType(name = "dateTime")
     protected Calendar orderDate;
     @XmlElement(required = true, type = String.class)
-    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlJavaTypeAdapter(Adapter1.class)
     @XmlSchemaType(name = "dateTime")
     protected Calendar plannedDate;
     @XmlElement(required = true)
@@ -93,11 +91,9 @@ public class Order {
 
     /**
      * Gets the value of the orderNo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOrderNo() {
         return orderNo;
@@ -105,11 +101,9 @@ public class Order {
 
     /**
      * Sets the value of the orderNo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOrderNo(String value) {
         this.orderNo = value;
@@ -117,11 +111,9 @@ public class Order {
 
     /**
      * Gets the value of the orderDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public Calendar getOrderDate() {
         return orderDate;
@@ -129,11 +121,9 @@ public class Order {
 
     /**
      * Sets the value of the orderDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOrderDate(Calendar value) {
         this.orderDate = value;
@@ -141,11 +131,9 @@ public class Order {
 
     /**
      * Gets the value of the plannedDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public Calendar getPlannedDate() {
         return plannedDate;
@@ -153,11 +141,9 @@ public class Order {
 
     /**
      * Sets the value of the plannedDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPlannedDate(Calendar value) {
         this.plannedDate = value;
@@ -165,11 +151,9 @@ public class Order {
 
     /**
      * Gets the value of the orderType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOrderType() {
         return orderType;
@@ -177,11 +161,9 @@ public class Order {
 
     /**
      * Sets the value of the orderType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOrderType(String value) {
         this.orderType = value;
@@ -189,11 +171,9 @@ public class Order {
 
     /**
      * Gets the value of the deliveryType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDeliveryType() {
         return deliveryType;
@@ -201,11 +181,9 @@ public class Order {
 
     /**
      * Sets the value of the deliveryType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDeliveryType(String value) {
         this.deliveryType = value;
@@ -213,11 +191,9 @@ public class Order {
 
     /**
      * Gets the value of the contractor property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Contractor }
-     *     
+     *
+     * @return possible object is
+     * {@link Contractor }
      */
     public Contractor getContractor() {
         return contractor;
@@ -225,11 +201,9 @@ public class Order {
 
     /**
      * Sets the value of the contractor property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Contractor }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Contractor }
      */
     public void setContractor(Contractor value) {
         this.contractor = value;
@@ -237,11 +211,9 @@ public class Order {
 
     /**
      * Gets the value of the vehicle property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Vehicle }
-     *     
+     *
+     * @return possible object is
+     * {@link Vehicle }
      */
     public Vehicle getVehicle() {
         return vehicle;
@@ -249,11 +221,9 @@ public class Order {
 
     /**
      * Sets the value of the vehicle property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Vehicle }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Vehicle }
      */
     public void setVehicle(Vehicle value) {
         this.vehicle = value;
@@ -261,25 +231,23 @@ public class Order {
 
     /**
      * Gets the value of the lineItem property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the lineItem property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getLineItem().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link OrderLineItem }
-     * 
-     * 
      */
     public List<OrderLineItem> getLineItem() {
         if (lineItem == null) {

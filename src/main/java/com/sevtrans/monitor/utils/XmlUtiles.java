@@ -47,7 +47,7 @@ public class XmlUtiles {
     public <T> T unmarshaller(String content, Class<T> clasz) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(Shell.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-         Object o=jaxbUnmarshaller.unmarshal(new StreamSource(new StringReader(content)));
+        Object o = jaxbUnmarshaller.unmarshal(new StreamSource(new StringReader(content)));
         return jaxbUnmarshaller.unmarshal(new StreamSource(new StringReader(content)), clasz).getValue();
     }
 
@@ -88,12 +88,13 @@ public class XmlUtiles {
      * See it in the documentation: docs.oracle.com/javase/7/docs/api/javax/xml/transform/stream/…
      * My suggestion calls the StreamResource constructor with an InputStream argument,
      * and to do that I wrapped the xmlContent string with an InputStream.
+     *
      * @param xmlFile
      * @param schemaFile
      * @return
      */
     public boolean validate(String xmlFile, String schemaFile) {
-         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try {
             Source t = new StreamSource(getClass().getResourceAsStream("/xml/severtrans.xsd"));
             Source xslt = new StreamSource(getClass().getResourceAsStream("/msg.xsl"));

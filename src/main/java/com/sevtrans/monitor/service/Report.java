@@ -40,8 +40,8 @@ public class Report {
 //       final byte[] data;
 //        data = JasperExportManager.exportReportToPdf(jasperPrint);
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasperPrint,buffer);
-       return buffer.toByteArray();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, buffer);
+        return buffer.toByteArray();
     }
 
     // Method to create the pdf file using the employee list datasource.

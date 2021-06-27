@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for OrderLineItem complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="OrderLineItem">
  *   &lt;complexContent>
@@ -37,18 +37,16 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "OrderLineItem", propOrder = {
-    "lineNumber",
-    "article",
-    "name",
-    "qty",
-    "category",
-    "mark2",
-    "comment"
+        "lineNumber",
+        "article",
+        "name",
+        "qty",
+        "category",
+        "mark2",
+        "comment"
 })
 public class OrderLineItem {
 
@@ -68,7 +66,6 @@ public class OrderLineItem {
 
     /**
      * Gets the value of the lineNumber property.
-     * 
      */
     public int getLineNumber() {
         return lineNumber;
@@ -76,7 +73,6 @@ public class OrderLineItem {
 
     /**
      * Sets the value of the lineNumber property.
-     * 
      */
     public void setLineNumber(int value) {
         this.lineNumber = value;
@@ -84,11 +80,9 @@ public class OrderLineItem {
 
     /**
      * Gets the value of the article property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getArticle() {
         return article;
@@ -96,11 +90,9 @@ public class OrderLineItem {
 
     /**
      * Sets the value of the article property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setArticle(String value) {
         this.article = value;
@@ -108,11 +100,9 @@ public class OrderLineItem {
 
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -120,11 +110,9 @@ public class OrderLineItem {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -132,11 +120,9 @@ public class OrderLineItem {
 
     /**
      * Gets the value of the qty property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
+     *
+     * @return possible object is
+     * {@link BigDecimal }
      */
     public BigDecimal getQty() {
         return qty;
@@ -144,11 +130,9 @@ public class OrderLineItem {
 
     /**
      * Sets the value of the qty property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link BigDecimal }
      */
     public void setQty(BigDecimal value) {
         this.qty = value;
@@ -156,11 +140,9 @@ public class OrderLineItem {
 
     /**
      * Gets the value of the category property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCategory() {
         return category;
@@ -168,11 +150,9 @@ public class OrderLineItem {
 
     /**
      * Sets the value of the category property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCategory(String value) {
         this.category = value;
@@ -180,11 +160,9 @@ public class OrderLineItem {
 
     /**
      * Gets the value of the mark2 property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getMark2() {
         return mark2;
@@ -192,11 +170,9 @@ public class OrderLineItem {
 
     /**
      * Sets the value of the mark2 property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setMark2(String value) {
         this.mark2 = value;
@@ -204,11 +180,9 @@ public class OrderLineItem {
 
     /**
      * Gets the value of the comment property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getComment() {
         return comment;
@@ -216,11 +190,9 @@ public class OrderLineItem {
 
     /**
      * Sets the value of the comment property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setComment(String value) {
         this.comment = value;

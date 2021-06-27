@@ -16,11 +16,11 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Транспортное средство
- * 
+ *
  * <p>Java class for Vehicle complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Vehicle">
  *   &lt;complexContent>
@@ -33,13 +33,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Vehicle", propOrder = {
-    "licencePlate",
-    "driver"
+        "licencePlate",
+        "driver"
 })
 public class Vehicle {
 
@@ -50,11 +48,9 @@ public class Vehicle {
 
     /**
      * Gets the value of the licencePlate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getLicencePlate() {
         return licencePlate;
@@ -62,11 +58,9 @@ public class Vehicle {
 
     /**
      * Sets the value of the licencePlate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setLicencePlate(String value) {
         this.licencePlate = value;
@@ -74,11 +68,9 @@ public class Vehicle {
 
     /**
      * Gets the value of the driver property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDriver() {
         return driver;
@@ -86,11 +78,9 @@ public class Vehicle {
 
     /**
      * Sets the value of the driver property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDriver(String value) {
         this.driver = value;

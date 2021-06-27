@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExpenditureOrderForGoods>
-	<Error> </Error>
-	<Number>ТС-00000014</Number>
-	<Date>14.10.2020</Date>
-	<Manager>Афонская Виктория Александровна</Manager>
-	<Mail/>
-	<Customer>Хеллманн</Customer>
-	<OrderType>Отгрузка</OrderType>
-	<TypeOfDelivery>Отгрузка клиенту</TypeOfDelivery>
-	<PlannedShipmentDate>19.10.2020</PlannedShipmentDate>
-	<VN>300223</VN>
-	<IDConsignee>ТС-УТ000049</IDConsignee>
-	<NameConsignee>ООО "Тест"</NameConsignee>
-	<AdressConsignee/>
-	<IDCarrier>ТС-УТ000051</IDCarrier>
-	<TypeCar>3</TypeCar>
-	<NumberCar>к597ма77</NumberCar>
-	<Driver>Водитель1</Driver>
-	<Goods>
-		<LineNumber>1</LineNumber>
-		<Article>MC780MN01A</Article>
-		<Name>MC780MN01A Весы-анализатор Tanita</Name>
-		<Category>0</Category>
-		<StorageLife>31.12.2021</StorageLife>
-		<Mark2>ТС-00000014</Mark2>
-		<Count>1</Count>
-		<Comment/>
-	</Goods>
-	<Goods>
-		<LineNumber>2</LineNumber>
-		<Article>MC780MN02A</Article>
-		<Name>MC780MN02A Весы-анализатор Tanita</Name>
-		<Category>0</Category>
-		<StorageLife>31.12.2021</StorageLife>
-		<Mark2>ТС-00000014</Mark2>
-		<Count>1</Count>
-		<Comment/>
-	</Goods>
+    <Error></Error>
+    <Number>ТС-00000014</Number>
+    <Date>14.10.2020</Date>
+    <Manager>Афонская Виктория Александровна</Manager>
+    <Mail/>
+    <Customer>Хеллманн</Customer>
+    <OrderType>Отгрузка</OrderType>
+    <TypeOfDelivery>Отгрузка клиенту</TypeOfDelivery>
+    <PlannedShipmentDate>19.10.2020</PlannedShipmentDate>
+    <VN>300223</VN>
+    <IDConsignee>ТС-УТ000049</IDConsignee>
+    <NameConsignee>ООО "Тест"</NameConsignee>
+    <AdressConsignee/>
+    <IDCarrier>ТС-УТ000051</IDCarrier>
+    <TypeCar>3</TypeCar>
+    <NumberCar>к597ма77</NumberCar>
+    <Driver>Водитель1</Driver>
+    <Goods>
+        <LineNumber>1</LineNumber>
+        <Article>MC780MN01A</Article>
+        <Name>MC780MN01A Весы-анализатор Tanita</Name>
+        <Category>0</Category>
+        <StorageLife>31.12.2021</StorageLife>
+        <Mark2>ТС-00000014</Mark2>
+        <Count>1</Count>
+        <Comment/>
+    </Goods>
+    <Goods>
+        <LineNumber>2</LineNumber>
+        <Article>MC780MN02A</Article>
+        <Name>MC780MN02A Весы-анализатор Tanita</Name>
+        <Category>0</Category>
+        <StorageLife>31.12.2021</StorageLife>
+        <Mark2>ТС-00000014</Mark2>
+        <Count>1</Count>
+        <Comment/>
+    </Goods>
 </ExpenditureOrderForGoods>

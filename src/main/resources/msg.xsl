@@ -1,7 +1,7 @@
 <!--<?xml version="1.0" encoding="UTF-8"?>-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs"
-    xmlns:st="http://www.sevtrans.com" version="2.0">
+                xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs"
+                xmlns:st="http://www.sevtrans.com" version="2.0">
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <xsl:function name="st:myDateTime">
@@ -25,7 +25,7 @@
 -\->
     </xsl:template>
 -->
-    
+
     <xsl:template match="/">
         <Shell xmlns="http://www.sevtrans.com">
             <xsl:choose>
@@ -123,7 +123,7 @@
                     <xsl:value-of select="st:myDateTime($dt)"/>
                 </xsl:when>
             </xsl:choose>
-            
+
         </xsl:element>
         <xsl:element name="orderType">
             <xsl:value-of select="current()/OrderType"/>
@@ -142,9 +142,9 @@
                     </xsl:when>
                 </xsl:choose>
             </xsl:element>
-            
+
             <xsl:element name="name">
-<!--                <xsl:value-of select="current()/NameSupplier"/>-->
+                <!--                <xsl:value-of select="current()/NameSupplier"/>-->
                 <xsl:choose>
                     <xsl:when test="current()/NameSupplier">
                         <xsl:value-of select="current()/NameSupplier"/>
@@ -154,7 +154,7 @@
                     </xsl:when>
                 </xsl:choose>
             </xsl:element>
-            
+
             <xsl:element name="address">
                 <xsl:value-of select="current()/AdressSupplier"/>
                 <xsl:choose>
@@ -166,7 +166,7 @@
                     </xsl:when>
                 </xsl:choose>
             </xsl:element>
-            
+
         </xsl:element>
 
         <xsl:element name="vehicle">

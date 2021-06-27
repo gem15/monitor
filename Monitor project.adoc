@@ -1,6 +1,4 @@
-C:\Users\Father\Documents\Oxygen\msg.xsl
-D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
-*Monitor project* _fdf_
+C:\Users\Father\Documents\Oxygen\msg.xsl D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql *Monitor project* _fdf_
 
 * [red]#Не забыть#
 - [red white-background big]*Важно* - всё работающее остаётся нетронутым
@@ -8,9 +6,7 @@ D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
 - выгрузка - unmarshalling
 - алгоритм цикл по клиентам цикл по способам обмена выбор атрибутов
 
-Боль
-[red]#red text# [yellow-background]#on yellow#
-[big]#large# [red yellow-background big]*all bold*
+Боль [red]#red text# [yellow-background]#on yellow# [big]#large# [red yellow-background big]*all bold*
 
 Для чего всё это
 
@@ -18,28 +14,21 @@ D:\Father\MailruCloud\Севертранс\monitor\KB_HLM_IO.sql
 . ыва
 . ав
 
-Самый пулярный язык серверного программирования для Enterprise Java. Spring Boot.
+Самый пулярный язык серверного программирования для Enterprise Java.
+Spring Boot.
 Преимущества Java
 https://medium.com/webbasedevelopment/why-java-is-the-most-preferred-programming-language-for-building-end-to-end-enterprise-solutions-731027246f2a
 From Java to C# and back again
 https://blog.allegro.tech/2018/06/from-java-to-c-sharp-and-back-again.html
 Why Is Spring Boot Popular?
 https://scand.com/company/blog/pros-and-cons-of-using-spring-boot/
-Запуск как сервис
-Application Performance Monitoring, APM)
-Как вы знаете, фреймворк Spring предоставляет легкий контейнер.
+Запуск как сервис Application Performance Monitoring, APM) Как вы знаете, фреймворк Spring предоставляет легкий контейнер.
 Его можно активировать без использования веб-сервера или сервера приложений.
-* Исползуемые технологии
-* Java
-- Spring Boot 2
-- JAXB
+* Исползуемые технологии * Java - Spring Boot 2 - JAXB
 
 [red]#Боль -Решение - Благодарность#
 
-TIP: Перспектива - JasperSoft reporting занчительно возросло понимание
-Веб интерфейс - все плюшки
-Java куча инфы интернет, книги, примеры, на любой вкус и уровень
-    всю разработку можно вести на любой платформе
+TIP: Перспектива - JasperSoft reporting занчительно возросло понимание Веб интерфейс - все плюшки Java куча инфы интернет, книги, примеры, на любой вкус и уровень всю разработку можно вести на любой платформе
 
 возжность локальной отладки без удалённого подключения и и удалённая разработка на локальноай машине
 
@@ -48,66 +37,40 @@ Java куча инфы интернет, книги, примеры, на люб
 тип документа по имени файла проблема - если передача не файлом?
 в апстности с фтп используя транс-ю неважно имя, главное чтобы оно было уникально
 
-быстрое подключение новых клиентов- деньги
-REST
+быстрое подключение новых клиентов- деньги REST
 
  все оракловсие джобы в одном иесте, простота настройки через файл свойств
 
 рассылка уведомлений по почте - целый квест
 
-Демонстратор
-Только для одноготипа документа полный цикл
-добавить другой документ для демонмтрации xslt
-xsd
+Демонстратор Только для одноготипа документа полный цикл добавить другой документ для демонмтрации xslt xsd
 
-FTP
-*excel*, xml
+FTP *excel*, xml
 
 Q: порядок обработки сообщений
 
 [TIP]
-Выбрал монитор т.к. независимый модуль
-следом веб клиент для клиентов
+Выбрал монитор т.к. независимый модуль следом веб клиент для клиентов
 
-Новые клиенты по идее должны ждать xsd
-xsd - web-services 1С работает с сервисами
-независимость проверки и 
+Новые клиенты по идее должны ждать xsd xsd - web-services 1С работает с сервисами независимость проверки и
 
 плохо для бизнеса старая система
 
 лучще перейти на на современный язык чем копаться в старом чужом дерьме
 
-Куда двигаться
-	веб-сервисы, тонкий клиент
+Куда двигаться веб-сервисы, тонкий клиент
 
-ООП против скриптового языка
-Java технолонии
- всё бесплатно
- Нет привязки к платформе. везде работает
-Всегда можно найти разработчиков
-Spring boot - the best
-Working with a True Development Environment
-Система контроля версий
-Тестирование
-	Using a Version-Control System scm
-	unit testing (TTD)
+ООП против скриптового языка Java технолонии всё бесплатно Нет привязки к платформе. везде работает Всегда можно найти разработчиков Spring boot - the best Working with a True Development Environment Система контроля версий Тестирование Using a Version-Control System scm unit testing (TTD)
 
-Адекватное логирование
-Простота настроек application.properties
+Адекватное логирование Простота настроек application.properties
 
-(Docker) - микросервисы
-Вебинтерфейс
+(Docker) - микросервисы Вебинтерфейс
 
-Очень старый
-Oracle Forms for Windows is not certificate for any version of 64 bits
-Псит гупта windows 7
+Очень старый Oracle Forms for Windows is not certificate for any version of 64 bits Псит гупта windows 7
 
 Postgresql vs Oracle _избавиться от оракл_
 
-Web-service stack
--
-***
-xslt, xsd validation
+Web-service stack - *** xslt, xsd validation
 
 
 
@@ -115,32 +78,21 @@ xslt, xsd validation
 ***
 Неправильная структура ДБ - костыльные запросы и многое другое
 
-Тип документа по имени файла - а если сообщение не файл? тег тип сообщения необходим
-Отчётность на ехеле - без Юрия Григорьевича никак
+Тип документа по имени файла - а если сообщение не файл? тег тип сообщения необходим Отчётность на ехеле - без Юрия Григорьевича никак
 
-Разные источники email, ftp, web service
-Разные форматы данных xml, xls, csv, json....
+Разные источники email, ftp, web service Разные форматы данных xml, xls, csv, json....
+
 ____
-mv ~/.ssh/id_rsa ~/.ssh/id_rsa.backup
-mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.backup
+mv ~/.ssh/id_rsa ~/.ssh/id_rsa.backup mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.backup
 
-/home/gemd/.ssh/id_rsa
-cp -ar ~/.ssh/* /mnt/c/temp
+/home/gemd/.ssh/id_rsa cp -ar ~/.ssh/* /mnt/c/temp
 
-/usr/lib/jvm/java-11-openjdk-amd64
-"java.home":"/usr/lib/jvm/java-11-openjdk-amd64"
+/usr/lib/jvm/java-11-openjdk-amd64 "java.home":"/usr/lib/jvm/java-11-openjdk-amd64"
 ____
 
-@Entity
-@Data
-@Table(name = "HPSD_EXPORT", schema = "CUBE")
-@SequenceGenerator(name = "seqHpsdExport", sequenceName = "SEQ_HPSD_EXPORT", allocationSize = 1)
+@Entity @Data @Table(name = "HPSD_EXPORT", schema = "CUBE") @SequenceGenerator(name = "seqHpsdExport", sequenceName = "SEQ_HPSD_EXPORT", allocationSize = 1)
 //@NamedQuery(name = "HpsdExport.findOldDownloads", query = "select o from HpsdExport o where o.exportDate<:oldDate")
-public class HpsdExport {
-    @Id
-    @Column(name = "PKEY")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqHpsdExport")
-    private Long id;
+public class HpsdExport { @Id @Column(name = "PKEY") @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqHpsdExport") private Long id;
 
     @Column(name = "FILENAME")
     private String fileName;

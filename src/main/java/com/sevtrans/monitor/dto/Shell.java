@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -39,18 +39,16 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "msgType",
-    "customerID",
-    "customer",
-    "product",
-    "order",
-    "deliveryOrder",
-    "shipmentOrder"
+        "msgType",
+        "customerID",
+        "customer",
+        "product",
+        "order",
+        "deliveryOrder",
+        "shipmentOrder"
 })
 @XmlRootElement(name = "Shell")
 public class Shell {
@@ -67,11 +65,9 @@ public class Shell {
 
     /**
      * Gets the value of the msgType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getMsgType() {
         return msgType;
@@ -79,11 +75,9 @@ public class Shell {
 
     /**
      * Sets the value of the msgType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setMsgType(String value) {
         this.msgType = value;
@@ -91,7 +85,6 @@ public class Shell {
 
     /**
      * Gets the value of the customerID property.
-     * 
      */
     public int getCustomerID() {
         return customerID;
@@ -99,7 +92,6 @@ public class Shell {
 
     /**
      * Sets the value of the customerID property.
-     * 
      */
     public void setCustomerID(int value) {
         this.customerID = value;
@@ -107,11 +99,9 @@ public class Shell {
 
     /**
      * Gets the value of the customer property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCustomer() {
         return customer;
@@ -119,11 +109,9 @@ public class Shell {
 
     /**
      * Sets the value of the customer property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCustomer(String value) {
         this.customer = value;
@@ -131,11 +119,9 @@ public class Shell {
 
     /**
      * Gets the value of the product property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Product }
-     *     
+     *
+     * @return possible object is
+     * {@link Product }
      */
     public Product getProduct() {
         return product;
@@ -143,11 +129,9 @@ public class Shell {
 
     /**
      * Sets the value of the product property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Product }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Product }
      */
     public void setProduct(Product value) {
         this.product = value;
@@ -155,11 +139,9 @@ public class Shell {
 
     /**
      * Gets the value of the order property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Order }
-     *     
+     *
+     * @return possible object is
+     * {@link Order }
      */
     public Order getOrder() {
         return order;
@@ -167,11 +149,9 @@ public class Shell {
 
     /**
      * Sets the value of the order property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Order }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Order }
      */
     public void setOrder(Order value) {
         this.order = value;
@@ -179,11 +159,9 @@ public class Shell {
 
     /**
      * Gets the value of the deliveryOrder property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DeliveryOrder }
-     *     
+     *
+     * @return possible object is
+     * {@link DeliveryOrder }
      */
     public DeliveryOrder getDeliveryOrder() {
         return deliveryOrder;
@@ -191,11 +169,9 @@ public class Shell {
 
     /**
      * Sets the value of the deliveryOrder property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeliveryOrder }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DeliveryOrder }
      */
     public void setDeliveryOrder(DeliveryOrder value) {
         this.deliveryOrder = value;
@@ -203,11 +179,9 @@ public class Shell {
 
     /**
      * Gets the value of the shipmentOrder property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ShipmentOrder }
-     *     
+     *
+     * @return possible object is
+     * {@link ShipmentOrder }
      */
     public ShipmentOrder getShipmentOrder() {
         return shipmentOrder;
@@ -215,11 +189,9 @@ public class Shell {
 
     /**
      * Sets the value of the shipmentOrder property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ShipmentOrder }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ShipmentOrder }
      */
     public void setShipmentOrder(ShipmentOrder value) {
         this.shipmentOrder = value;

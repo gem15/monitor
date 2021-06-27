@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataJpaTest
 public class IntegrationTest {
 
-//    @Autowired
+    //    @Autowired
 //    ShvocDao shvocDao;
     @Autowired
     CustomerDao customerDao;
